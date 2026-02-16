@@ -8,7 +8,7 @@ const Home = () => {
       <section className="bg-academic-gradient text-primary-foreground py-20 md:py-28">
         <div className="container mx-auto px-6 text-center">
           <p className="text-primary-foreground/70 font-body text-sm uppercase tracking-widest mb-4">
-            University of Wolverhampton
+            March 7, 2026 · UNIVERSITY OF WOLVERHAMPTON
           </p>
           <h1 className="text-3xl md:text-5xl font-display font-bold mb-6 leading-tight">
             Research Corner 2026
