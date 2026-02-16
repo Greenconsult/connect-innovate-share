@@ -21,7 +21,7 @@ const Schedule = () => {
           <div className="mb-8 bg-section-alt border border-border rounded p-4">
             <p className="text-sm font-body text-muted-foreground">
               <strong className="text-foreground">Frequency:</strong> Twice every year &nbsp;|&nbsp;
-              <strong className="text-foreground">Duration:</strong> 2–3 hours per session
+              <strong className="text-foreground">Duration:</strong> 3 hours per session
             </p>
           </div>
 
