@@ -36,9 +36,18 @@ const Venue = () => {
             </div>
           </div>
 
-          {/* Map placeholder */}
-          <div className="bg-muted border border-border rounded h-64 flex items-center justify-center">
-            <p className="text-muted-foreground font-body text-sm">Map — Springfield Campus, University of Wolverhampton</p>
+          {/* Embedded Google Map */}
+          <div className="rounded overflow-hidden border border-border">
+            <iframe
+              title="Springfield Campus, University of Wolverhampton"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2422.5!2d-2.1288!3d52.5886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870942d0e7a3c3b%3A0x5e3e5e3e5e3e5e3e!2sSpringfield%20Campus%2C%20University%20of%20Wolverhampton!5e0!3m2!1sen!2suk!4v1700000000000"
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>
