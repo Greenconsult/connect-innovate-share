@@ -6,7 +6,7 @@ const Proceedings = () => {
       <section className="bg-academic-gradient text-primary-foreground py-12">
         <div className="container mx-auto px-6">
           <h1 className="text-3xl md:text-4xl font-display font-bold">Proceedings</h1>
-          <p className="text-primary-foreground/70 font-body mt-2">Access research and publications</p>
+          <p className="text-primary-foreground/70 font-body mt-2">Access research presentation and abstracts.</p>
         </div>
       </section>
 
