@@ -32,7 +32,7 @@ const Home = () => {
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-primary-foreground/60 text-sm font-body">
             <span className="flex items-center gap-2">
-              <CalendarDays className="w-4 h-4" /> Bi-monthly Sessions
+              <CalendarDays className="w-4 h-4" /> Engaging Sessions
             </span>
             <span className="flex items-center gap-2">
               <MapPin className="w-4 h-4" /> Springfield Campus
