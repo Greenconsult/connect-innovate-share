@@ -16,7 +16,7 @@ const Venue = () => {
             <div className="bg-card border border-border rounded p-5 text-center max-w-sm mx-auto">
               <MapPin className="w-6 h-6 text-primary mx-auto mb-2" />
               <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-1">Location</p>
-              <p className="font-display font-bold text-foreground text-sm">Springfield Campus, Wolverhampton</p>
+              <p className="font-display font-bold text-foreground text-sm">Springfield Campus, University of Wolverhampton</p>
             </div>
           </div>
 
