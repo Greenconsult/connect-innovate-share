@@ -9,12 +9,12 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1200px",
       },
     },
     extend: {
       fontFamily: {
-        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        display: ['"Merriweather"', 'Georgia', 'serif'],
         body: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
       },
       colors: {
@@ -51,16 +51,19 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        navy: {
-          DEFAULT: "hsl(var(--navy))",
-          light: "hsl(var(--navy-light))",
+        "academic-blue": {
+          DEFAULT: "hsl(var(--academic-blue))",
+          light: "hsl(var(--academic-blue-light))",
         },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          light: "hsl(var(--gold-light))",
-          dark: "hsl(var(--gold-dark))",
+        "academic-burgundy": {
+          DEFAULT: "hsl(var(--academic-burgundy))",
+          light: "hsl(var(--academic-burgundy-light))",
         },
-        cream: "hsl(var(--cream))",
+        "academic-gold": "hsl(var(--academic-gold))",
+        "academic-gray": {
+          DEFAULT: "hsl(var(--academic-gray))",
+          dark: "hsl(var(--academic-gray-dark))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -86,15 +89,10 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "fade-up": {
-          from: { opacity: "0", transform: "translateY(30px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-up": "fade-up 0.6s ease-out forwards",
       },
     },
   },

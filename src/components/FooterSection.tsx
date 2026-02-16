@@ -1,17 +1,42 @@
+import { Link } from "react-router-dom";
+
 const FooterSection = () => {
   return (
-    <footer className="py-12 bg-primary border-t border-gold/10">
-      <div className="container mx-auto px-6 text-center">
-        <p className="font-display text-xl font-semibold text-primary-foreground mb-2">
-          Research Corner
-        </p>
-        <p className="text-primary-foreground/50 text-sm font-body mb-6">
-          School of Computing &amp; Mathematical Sciences — University of Wolverhampton
-        </p>
-        <div className="w-12 h-px bg-gold/30 mx-auto mb-6" />
-        <p className="text-primary-foreground/30 text-xs font-body">
+    <footer className="bg-primary text-primary-foreground">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 className="font-display font-bold text-lg mb-3">Research Corner</h3>
+            <p className="text-primary-foreground/70 text-sm font-body leading-relaxed">
+              Building a Research Culture in Computing & Mathematical Sciences at the University of Wolverhampton.
+            </p>
+          </div>
+          <div>
+            <h4 className="font-display font-bold text-sm mb-3 uppercase tracking-wide">Quick Links</h4>
+            <ul className="space-y-2 text-sm font-body">
+              <li><Link to="/about" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">About</Link></li>
+              <li><Link to="/speakers" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Speakers</Link></li>
+              <li><Link to="/schedule" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Schedule</Link></li>
+              <li><Link to="/call-for-papers" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Call for Papers</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-display font-bold text-sm mb-3 uppercase tracking-wide">Contact</h4>
+            <ul className="space-y-2 text-sm font-body text-primary-foreground/70">
+              <li>School of Computing & Mathematical Sciences</li>
+              <li>University of Wolverhampton</li>
+              <li>Springfield Campus, Wolverhampton</li>
+              <li className="mt-2">
+                <a href="mailto:researchcorner@wlv.ac.uk" className="hover:text-primary-foreground transition-colors">
+                  researchcorner@wlv.ac.uk
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t border-primary-foreground/20 mt-8 pt-6 text-center text-xs text-primary-foreground/50 font-body">
           © {new Date().getFullYear()} University of Wolverhampton. All rights reserved.
-        </p>
+        </div>
       </div>
     </footer>
   );
