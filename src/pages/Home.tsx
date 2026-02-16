@@ -10,7 +10,7 @@ const Home = () => {
           <p className="text-primary-foreground/70 font-body text-sm uppercase tracking-widest mb-4">
             University of Wolverhampton
           </p>
-          <h1 className="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight">
+          <h1 className="text-3xl md:text-5xl font-display font-bold mb-6 leading-tight">
             Research Corner 2026
           </h1>
           <p className="text-primary-foreground/80 font-body text-lg md:text-xl max-w-2xl mx-auto mb-8">
