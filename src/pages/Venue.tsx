@@ -1,4 +1,4 @@
-import { MapPin, Calendar } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 const Venue = () => {
   return (
@@ -12,17 +12,12 @@ const Venue = () => {
 
       <section className="py-16">
         <div className="container mx-auto px-6 max-w-3xl">
-          <div className="grid sm:grid-cols-2 gap-6 mb-10">
-            {[
-              { icon: MapPin, label: "Location", value: "Springfield Campus, Wolverhampton" },
-              { icon: Calendar, label: "Frequency", value: "Twice Every Year" },
-            ].map((item) => (
-              <div key={item.label} className="bg-card border border-border rounded p-5 text-center">
-                <item.icon className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-1">{item.label}</p>
-                <p className="font-display font-bold text-foreground text-sm">{item.value}</p>
-              </div>
-            ))}
+          <div className="mb-10">
+            <div className="bg-card border border-border rounded p-5 text-center max-w-sm mx-auto">
+              <MapPin className="w-6 h-6 text-primary mx-auto mb-2" />
+              <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-1">Location</p>
+              <p className="font-display font-bold text-foreground text-sm">Springfield Campus, Wolverhampton</p>
+            </div>
           </div>
 
           <h2 className="text-xl font-display font-bold text-foreground mb-4">Getting Here</h2>
