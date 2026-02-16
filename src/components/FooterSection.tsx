@@ -17,7 +17,7 @@ const FooterSection = () => {
               <li><Link to="/about" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">About</Link></li>
               <li><Link to="/speakers" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Speakers</Link></li>
               <li><Link to="/schedule" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Schedule</Link></li>
-              <li><Link to="/call-for-papers" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Call for Papers</Link></li>
+              <li><Link to="/proceedings" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Proceedings</Link></li>
             </ul>
           </div>
           <div>
