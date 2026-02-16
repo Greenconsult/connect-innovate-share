@@ -17,7 +17,7 @@ const CallForPapers = () => {
             <div>
               <h2 className="font-display font-bold text-foreground mb-2">We Welcome Your Research</h2>
               <p className="text-muted-foreground font-body text-sm leading-relaxed">
-                Research Corner invites submissions from undergraduate students, postgraduate students, and recent graduates of the School of Computing & Mathematical Sciences.
+                Research Corner invites submissions from undergraduate students, postgraduate students, and recent graduates of the Department of Computing & Mathematical Sciences.
               </p>
             </div>
           </div>

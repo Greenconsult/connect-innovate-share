@@ -23,7 +23,7 @@ const FooterSection = () => {
           <div>
             <h4 className="font-display font-bold text-sm mb-3 uppercase tracking-wide">Contact</h4>
             <ul className="space-y-2 text-sm font-body text-primary-foreground/70">
-              <li>School of Computing & Mathematical Sciences</li>
+              <li>Department of Computing & Mathematical Sciences</li>
               <li>University of Wolverhampton</li>
               <li>Springfield Campus, Wolverhampton</li>
               <li className="mt-2">
