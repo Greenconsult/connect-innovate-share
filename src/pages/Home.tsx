@@ -11,7 +11,7 @@ const Home = () => {
             University of Wolverhampton
           </p>
           <h1 className="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight">
-            Research Corner
+            Research Corner 2026
           </h1>
           <p className="text-primary-foreground/80 font-body text-lg md:text-xl max-w-2xl mx-auto mb-8">
             Building a Research Culture in Computing & Mathematical Sciences
