@@ -28,7 +28,7 @@ const Navbar = () => {
             </Link>
 
             {/* Desktop links */}
-            <div className="hidden lg:flex items-center gap-1">
+            <div className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.to}
@@ -46,7 +46,7 @@ const Navbar = () => {
 
             {/* Mobile toggle */}
             <button
-              className="lg:hidden text-foreground"
+              className="md:hidden text-foreground"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -57,7 +57,7 @@ const Navbar = () => {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="lg:hidden border-t border-border bg-background pb-4">
+          <div className="md:hidden border-t border-border bg-background pb-4">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
