@@ -1,8 +1,8 @@
 import { User } from "lucide-react";
 
 const committee = [
-  { name: "Julius Odede", role: "Chair", affiliation: "School of Computing & Mathematical Sciences" },
-  { name: "Consolée Mbarushimana", role: "Co-Chair", affiliation: "School of Computing & Mathematical Sciences" },
+  { name: "Julius Odede", role: "Chair", affiliation: "Department of Computing & Mathematical Sciences" },
+  { name: "Consolée Mbarushimana", role: "Co-Chair", affiliation: "Department of Computing & Mathematical Sciences" },
   { name: "Dr. Helen Price", role: "Programme Committee", affiliation: "Department of Computer Science" },
   { name: "Dr. Rajesh Patel", role: "Programme Committee", affiliation: "Department of Mathematics" },
   { name: "Ms. Laura Benson", role: "Organising Committee", affiliation: "Postgraduate Research Office" },
