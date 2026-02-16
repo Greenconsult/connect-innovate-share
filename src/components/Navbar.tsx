@@ -19,14 +19,6 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Top bar */}
-      <div className="bg-primary text-primary-foreground text-xs py-2">
-        <div className="container mx-auto px-6 flex justify-between items-center">
-          <span>School of Computing & Mathematical Sciences</span>
-          <span className="hidden sm:inline">University of Wolverhampton</span>
-        </div>
-      </div>
-
       {/* Main nav */}
       <nav className="bg-background border-b border-border sticky top-0 z-50">
         <div className="container mx-auto px-6">
