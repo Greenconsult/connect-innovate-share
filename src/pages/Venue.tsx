@@ -15,7 +15,7 @@ const Venue = () => {
           <div className="grid sm:grid-cols-3 gap-6 mb-10">
             {[
               { icon: MapPin, label: "Location", value: "Springfield Campus, Wolverhampton" },
-              { icon: Calendar, label: "Frequency", value: "Every two months" },
+              { icon: Calendar, label: "Frequency", value: "Twice Every Year" },
               { icon: Clock, label: "Duration", value: "2–3 hours per session" },
             ].map((item) => (
               <div key={item.label} className="bg-card border border-border rounded p-5 text-center">
