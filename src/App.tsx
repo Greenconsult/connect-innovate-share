@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Speakers from "./pages/Speakers";
 import Schedule from "./pages/Schedule";
-import CallForPapers from "./pages/CallForPapers";
+import Proceedings from "./pages/Proceedings";
 import Committee from "./pages/Committee";
 import Venue from "./pages/Venue";
 import Contact from "./pages/Contact";
@@ -28,7 +28,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/speakers" element={<Speakers />} />
             <Route path="/schedule" element={<Schedule />} />
-            <Route path="/call-for-papers" element={<CallForPapers />} />
+            <Route path="/proceedings" element={<Proceedings />} />
             <Route path="/committee" element={<Committee />} />
             <Route path="/venue" element={<Venue />} />
             <Route path="/contact" element={<Contact />} />

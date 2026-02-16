@@ -18,10 +18,10 @@ const Home = () => {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <Link
-              to="/call-for-papers"
+              to="/proceedings"
               className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-6 py-3 rounded text-sm font-body font-semibold transition-colors inline-flex items-center gap-2"
             >
-              Submit Your Paper <ArrowRight className="w-4 h-4" />
+              View Proceedings <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/schedule"
@@ -91,10 +91,10 @@ const Home = () => {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              to="/call-for-papers"
+              to="/proceedings"
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded text-sm font-body font-semibold transition-colors"
             >
-              Submit a Paper
+              View Proceedings
             </Link>
             <Link
               to="/contact"

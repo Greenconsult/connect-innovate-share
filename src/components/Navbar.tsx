@@ -7,7 +7,7 @@ const navLinks = [
   { label: "About", to: "/about" },
   { label: "Speakers", to: "/speakers" },
   { label: "Schedule", to: "/schedule" },
-  { label: "Call for Papers", to: "/call-for-papers" },
+  { label: "Proceedings", to: "/proceedings" },
   { label: "Committee", to: "/committee" },
   { label: "Venue", to: "/venue" },
   { label: "Contact", to: "/contact" },
