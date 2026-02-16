@@ -29,7 +29,7 @@ const Committee = () => {
                 </div>
                 <div>
                   <h3 className="font-display font-bold text-foreground text-sm">{member.name}</h3>
-                  <p className="text-secondary font-body text-xs font-semibold">{member.role}</p>
+                  <p className="text-primary font-body text-xs font-semibold">{member.role}</p>
                   <p className="text-muted-foreground font-body text-xs">{member.affiliation}</p>
                 </div>
               </div>
