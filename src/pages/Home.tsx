@@ -1,47 +1,73 @@
 import { Link } from "react-router-dom";
-import { CalendarDays, MapPin, Users, ArrowRight } from "lucide-react";
+import { CalendarDays, MapPin, Users, ArrowRight, BookOpen, Briefcase, TrendingUp } from "lucide-react";
+import campusHero from "@/assets/campus-hero.jpg";
 
 const Home = () => {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-academic-gradient text-primary-foreground py-20 md:py-28">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-primary-foreground/70 font-body text-sm uppercase tracking-widest mb-4">
-            March 7, 2026 · UNIVERSITY OF WOLVERHAMPTON
-          </p>
-          <h1 className="text-3xl md:text-5xl font-display font-bold mb-6 leading-tight">
+      {/* Hero with campus image */}
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+        {/* Background image */}
+        <img
+          src={campusHero}
+          alt="University of Wolverhampton City Campus"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/50 to-black/75" />
+
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-6 text-center text-white">
+          {/* Tagline badge */}
+          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 rounded-full px-4 py-1.5 text-xs font-body font-semibold uppercase tracking-widest text-white/90 mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
+            March 7, 2026 · University of Wolverhampton
+          </div>
+
+          <h1 className="text-4xl md:text-6xl font-display font-bold mb-4 leading-tight drop-shadow-lg">
             Research Corner 2026
           </h1>
-          <p className="text-primary-foreground/80 font-body text-lg md:text-xl max-w-2xl mx-auto mb-8">
+
+          {/* Tagline */}
+          <p className="text-xl md:text-2xl font-display font-semibold text-yellow-300 mb-4 drop-shadow">
+            Research-Driven. Industry-Ready. Career-Focused.
+          </p>
+
+          <p className="text-white/80 font-body text-base md:text-lg max-w-2xl mx-auto mb-10">
             Building a Research Culture in Computing & Mathematical Sciences
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Link
               to="/proceedings"
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground px-6 py-3 rounded text-sm font-body font-semibold transition-colors inline-flex items-center gap-2"
+              className="bg-yellow-400 hover:bg-yellow-300 text-black px-8 py-3 rounded text-sm font-body font-bold transition-colors inline-flex items-center gap-2 shadow-lg"
             >
               View Proceedings <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/schedule"
-              className="border border-primary-foreground/30 hover:bg-primary-foreground/10 text-primary-foreground px-6 py-3 rounded text-sm font-body font-semibold transition-colors"
+              className="bg-white/15 backdrop-blur-sm border border-white/30 hover:bg-white/25 text-white px-8 py-3 rounded text-sm font-body font-semibold transition-colors"
             >
               View Schedule
             </Link>
           </div>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-primary-foreground/60 text-sm font-body">
-            <span className="flex items-center gap-2">
-              <CalendarDays className="w-4 h-4" /> Engaging Sessions
+
+          {/* Info pills */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-white/75 text-sm font-body">
+            <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5">
+              <CalendarDays className="w-4 h-4 text-yellow-300" /> Engaging Sessions
             </span>
-            <span className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" /> City Campus
+            <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5">
+              <MapPin className="w-4 h-4 text-yellow-300" /> City Campus
             </span>
-            <span className="flex items-center gap-2">
-              <Users className="w-4 h-4" /> Open to All Students
+            <span className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5">
+              <Users className="w-4 h-4 text-yellow-300" /> Open to All Students
             </span>
           </div>
         </div>
+
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* About preview */}
@@ -67,11 +93,12 @@ const Home = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
-              { title: "Present Your Research", desc: "Share your findings with an engaged academic audience and receive valuable feedback." },
-              { title: "Network & Collaborate", desc: "Connect with peers, alumni, faculty, and industry professionals." },
-              { title: "Build Your Profile", desc: "Gain experience in academic presentation, work toward publications and connect with Industry." },
+              { icon: BookOpen, title: "Present Your Research", desc: "Share your findings with an engaged academic audience and receive valuable feedback." },
+              { icon: Briefcase, title: "Network & Collaborate", desc: "Connect with peers, alumni, faculty, and industry professionals." },
+              { icon: TrendingUp, title: "Build Your Profile", desc: "Gain experience in academic presentation, work toward publications and connect with Industry." },
             ].map((item) => (
               <div key={item.title} className="bg-card border border-border rounded p-6">
+                <item.icon className="w-6 h-6 text-primary mb-3" />
                 <h3 className="font-display font-bold text-foreground mb-2">{item.title}</h3>
                 <p className="text-muted-foreground text-sm font-body leading-relaxed">{item.desc}</p>
               </div>
