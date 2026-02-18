@@ -91,7 +91,7 @@ const Home = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
-              { icon: BookOpen, title: "Present Your Research", desc: "Share your findings with an engaged academic audience and receive valuable feedback." },
+              { icon: BookOpen, title: "Present Your Research", desc: "Share your findings with an engaged academic and industry audience and receive valuable feedback." },
               { icon: Briefcase, title: "Network & Collaborate", desc: "Connect with peers, alumni, faculty, and industry professionals." },
               { icon: TrendingUp, title: "Build Your Profile", desc: "Gain experience in academic presentation, work toward publications and connect with Industry." },
             ].map((item) => (
