@@ -6,7 +6,7 @@ const FooterSection = () => {
       <div className="container mx-auto px-6 py-12">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-display font-bold text-lg mb-3">Research and Employability Corner 2026</h3>
+            <h3 className="font-display font-bold text-lg mb-3">Research and Employability Corner</h3>
             <p className="text-primary-foreground/70 text-sm font-body leading-relaxed">
               Building a Research Culture in Computing & Mathematical Sciences at the University of Wolverhampton.
             </p>
