@@ -25,7 +25,7 @@ const Home = () => {
           </div>
 
           <h1 className="text-4xl md:text-6xl font-display font-bold mb-4 leading-tight drop-shadow-lg">
-            Research and Employability Corner 2026
+            Research and Employability Corner
           </h1>
 
           {/* Tagline */}
