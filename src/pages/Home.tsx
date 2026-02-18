@@ -33,9 +33,7 @@ const Home = () => {
             Research-Driven. Industry-Ready. Career-Focused.
           </p>
 
-          <p className="text-white/80 font-body text-base md:text-lg max-w-2xl mx-auto mb-10">
-            Building a Research Culture in Computing & Mathematical Sciences
-          </p>
+
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Link
