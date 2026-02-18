@@ -24,7 +24,7 @@ const Navbar = () => {
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="font-display font-bold text-xl text-primary">
-              Research & Employability Corner
+              REC 2026
             </Link>
 
             {/* Desktop links */}
