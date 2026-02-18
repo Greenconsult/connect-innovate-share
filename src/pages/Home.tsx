@@ -21,7 +21,7 @@ const Home = () => {
           {/* Tagline badge */}
           <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 rounded-full px-4 py-1.5 text-xs font-body font-semibold uppercase tracking-widest text-white/90 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
-            March 7, 2026 · University of Wolverhampton
+            April 21, 2026 · University of Wolverhampton
           </div>
 
           <h1 className="text-4xl md:text-6xl font-display font-bold mb-4 leading-tight drop-shadow-lg">
