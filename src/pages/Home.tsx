@@ -35,7 +35,7 @@ const Home = () => {
               <CalendarDays className="w-4 h-4" /> Engaging Sessions
             </span>
             <span className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" /> Springfield Campus
+              <MapPin className="w-4 h-4" /> City Campus
             </span>
             <span className="flex items-center gap-2">
               <Users className="w-4 h-4" /> Open to All Students

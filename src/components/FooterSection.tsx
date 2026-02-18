@@ -25,7 +25,7 @@ const FooterSection = () => {
             <ul className="space-y-2 text-sm font-body text-primary-foreground/70">
               <li>Department of Computing & Mathematical Sciences</li>
               <li>University of Wolverhampton</li>
-              <li>Springfield Campus, Wolverhampton</li>
+              <li>City Campus, Wolverhampton</li>
               <li className="mt-2">
                 <a href="mailto:researchcorner@wlv.ac.uk" className="hover:text-primary-foreground transition-colors">
                   researchcorner@wlv.ac.uk
