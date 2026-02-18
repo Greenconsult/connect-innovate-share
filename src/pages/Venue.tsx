@@ -1,48 +1,85 @@
-import { MapPin } from "lucide-react";
+import { MapPin, Train, Bus, Car } from "lucide-react";
+import campusHero from "@/assets/campus-hero.jpg";
+
+const travelOptions = [
+  {
+    icon: Train,
+    title: "By Train",
+    desc: "Wolverhampton railway station is a 15-minute walk from City Campus. Regular services run from Birmingham New Street.",
+    color: "text-blue-500",
+    bg: "bg-blue-50 border-blue-200",
+  },
+  {
+    icon: Bus,
+    title: "By Bus",
+    desc: "Several bus routes serve the campus area. Check National Express West Midlands for timetables.",
+    color: "text-emerald-500",
+    bg: "bg-emerald-50 border-emerald-200",
+  },
+  {
+    icon: Car,
+    title: "By Car",
+    desc: "Limited parking is available on campus. We recommend using public transport where possible.",
+    color: "text-orange-500",
+    bg: "bg-orange-50 border-orange-200",
+  },
+];
 
 const Venue = () => {
   return (
     <>
-      <section className="bg-academic-gradient text-primary-foreground py-12">
-        <div className="container mx-auto px-6">
-          <h1 className="text-3xl md:text-4xl font-display font-bold">Venue</h1>
-          <p className="text-primary-foreground/70 font-body mt-2">Location and travel information</p>
+      {/* Vibrant hero */}
+      <section className="relative py-20 flex items-center overflow-hidden">
+        <img
+          src={campusHero}
+          alt="University of Wolverhampton"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/75 via-black/60 to-black/70" />
+        <div className="relative z-10 container mx-auto px-6 text-white">
+          <div className="inline-flex items-center gap-2 bg-yellow-400/20 border border-yellow-400/40 rounded-full px-4 py-1.5 text-xs font-body font-semibold uppercase tracking-widest text-yellow-300 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
+            April 21, 2026
+          </div>
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-3 drop-shadow-lg">Venue</h1>
+          <p className="text-white/70 font-body text-lg">Location and travel information</p>
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-16 bg-gradient-to-b from-white to-slate-50">
         <div className="container mx-auto px-6 max-w-3xl">
-          <div className="mb-10">
-            <div className="bg-card border border-border rounded p-5 text-center max-w-sm mx-auto">
-              <MapPin className="w-6 h-6 text-primary mx-auto mb-2" />
-              <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-1">Location</p>
-              <p className="font-display font-bold text-foreground text-sm">City Campus, University of Wolverhampton</p>
+          {/* Location card */}
+          <div className="flex items-center gap-5 bg-slate-800 text-white rounded-xl p-6 mb-10 shadow">
+            <div className="w-14 h-14 rounded-full bg-yellow-400/20 border border-yellow-400/40 flex items-center justify-center flex-shrink-0">
+              <MapPin className="w-7 h-7 text-yellow-400" />
+            </div>
+            <div>
+              <p className="text-xs font-body font-semibold uppercase tracking-widest text-yellow-300 mb-1">Location</p>
+              <p className="font-display font-bold text-white text-lg">City Campus, University of Wolverhampton</p>
+              <p className="text-white/60 font-body text-sm">Wolverhampton, WV1 1LY, United Kingdom</p>
             </div>
           </div>
 
-          <h2 className="text-xl font-display font-bold text-foreground mb-4">Getting Here</h2>
-          <div className="bg-card border border-border rounded p-6 space-y-4 mb-8">
-            <div>
-              <h3 className="font-body font-semibold text-foreground text-sm mb-1">By Train</h3>
-              <p className="text-muted-foreground text-sm font-body">Wolverhampton railway station is a 15-minute walk from City Campus. Regular services run from Birmingham New Street.</p>
-            </div>
-            <div>
-              <h3 className="font-body font-semibold text-foreground text-sm mb-1">By Bus</h3>
-              <p className="text-muted-foreground text-sm font-body">Several bus routes serve the campus area. Check National Express West Midlands for timetables.</p>
-            </div>
-            <div>
-              <h3 className="font-body font-semibold text-foreground text-sm mb-1">By Car</h3>
-              <p className="text-muted-foreground text-sm font-body">Limited parking is available on campus. We recommend using public transport where possible.</p>
-            </div>
+          <h2 className="text-xl font-display font-bold text-foreground mb-5">Getting Here</h2>
+          <div className="grid gap-4 mb-10">
+            {travelOptions.map((opt) => (
+              <div key={opt.title} className={`flex items-start gap-4 border rounded-xl p-5 ${opt.bg} shadow-sm`}>
+                <opt.icon className={`w-5 h-5 flex-shrink-0 mt-0.5 ${opt.color}`} />
+                <div>
+                  <h3 className="font-body font-bold text-foreground text-sm mb-1">{opt.title}</h3>
+                  <p className="text-muted-foreground text-sm font-body leading-relaxed">{opt.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Embedded Google Map */}
-          <div className="rounded overflow-hidden border border-border">
+          {/* Map */}
+          <div className="rounded-xl overflow-hidden border border-border shadow-md">
             <iframe
               title="City Campus, University of Wolverhampton"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2422.5!2d-2.1288!3d52.5886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870942d0e7a3c3b%3A0x5e3e5e3e5e3e5e3e!2sSpringfield%20Campus%2C%20University%20of%20Wolverhampton!5e0!3m2!1sen!2suk!4v1700000000000"
               width="100%"
-              height="300"
+              height="320"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
