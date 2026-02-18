@@ -38,7 +38,7 @@ const Contact = () => {
                     <p className="text-muted-foreground text-sm font-body">
                       Department of Computing & Mathematical Sciences<br />
                       University of Wolverhampton<br />
-                      Springfield Campus<br />
+                      City Campus<br />
                       Wolverhampton, WV10 0JP
                     </p>
                   </div>

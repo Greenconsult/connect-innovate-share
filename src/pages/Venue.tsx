@@ -16,7 +16,7 @@ const Venue = () => {
             <div className="bg-card border border-border rounded p-5 text-center max-w-sm mx-auto">
               <MapPin className="w-6 h-6 text-primary mx-auto mb-2" />
               <p className="text-xs font-body text-muted-foreground uppercase tracking-wide mb-1">Location</p>
-              <p className="font-display font-bold text-foreground text-sm">Springfield Campus, University of Wolverhampton</p>
+              <p className="font-display font-bold text-foreground text-sm">City Campus, University of Wolverhampton</p>
             </div>
           </div>
 
@@ -24,7 +24,7 @@ const Venue = () => {
           <div className="bg-card border border-border rounded p-6 space-y-4 mb-8">
             <div>
               <h3 className="font-body font-semibold text-foreground text-sm mb-1">By Train</h3>
-              <p className="text-muted-foreground text-sm font-body">Wolverhampton railway station is a 15-minute walk from Springfield Campus. Regular services run from Birmingham New Street.</p>
+              <p className="text-muted-foreground text-sm font-body">Wolverhampton railway station is a 15-minute walk from City Campus. Regular services run from Birmingham New Street.</p>
             </div>
             <div>
               <h3 className="font-body font-semibold text-foreground text-sm mb-1">By Bus</h3>
@@ -39,7 +39,7 @@ const Venue = () => {
           {/* Embedded Google Map */}
           <div className="rounded overflow-hidden border border-border">
             <iframe
-              title="Springfield Campus, University of Wolverhampton"
+              title="City Campus, University of Wolverhampton"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2422.5!2d-2.1288!3d52.5886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870942d0e7a3c3b%3A0x5e3e5e3e5e3e5e3e!2sSpringfield%20Campus%2C%20University%20of%20Wolverhampton!5e0!3m2!1sen!2suk!4v1700000000000"
               width="100%"
               height="300"

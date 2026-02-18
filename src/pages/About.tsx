@@ -30,7 +30,7 @@ const About = () => {
             Each session features research presentations, panel discussions, and networking opportunities designed to promote innovation, academic excellence, and professional growth.
           </p>
           <p className="text-muted-foreground font-body leading-relaxed">
-            Sessions are held bi-monthly, each lasting 2–3 hours at the Springfield Campus (or alternating with City Campus for wider participation). The audience includes undergraduate and postgraduate students, recent graduates, academic staff and researchers, and industry representatives.
+            Sessions are held bi-monthly, each lasting 2–3 hours at the City Campus. The audience includes undergraduate and postgraduate students, recent graduates, academic staff and researchers, and industry representatives.
           </p>
         </div>
       </section>
