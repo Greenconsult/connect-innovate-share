@@ -93,7 +93,7 @@ const Home = () => {
             {[
               { icon: BookOpen, title: "Present Your Research", desc: "Share your findings with an engaged academic and industry audience and receive valuable feedback." },
               { icon: Briefcase, title: "Network & Collaborate", desc: "Connect with peers, alumni, faculty, and industry professionals." },
-              { icon: TrendingUp, title: "Build Your Profile", desc: "Gain experience in academic presentation, work toward publications and connect with Industry." },
+              { icon: TrendingUp, title: "Build Your Profile", desc: "Gain experience in academic presentation, work toward publications and connect with Industry for employment." },
             ].map((item) => (
               <div key={item.title} className="bg-card border border-border rounded p-6">
                 <item.icon className="w-6 h-6 text-primary mb-3" />
