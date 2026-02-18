@@ -18,15 +18,15 @@ const Home = () => {
 
         {/* Content */}
         <div className="relative z-10 container mx-auto px-6 text-center text-white">
-          {/* REC 2026 top banner */}
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 rounded-full px-4 py-1.5 text-xs font-body font-semibold uppercase tracking-widest text-white/90 mb-3">
+          {/* Tagline badge */}
+          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 rounded-full px-4 py-1.5 text-xs font-body font-semibold uppercase tracking-widest text-white/90 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
-            REC 2026
-          </div>
-
-          <div className="mb-2 text-white/70 font-body text-sm">
             April 21, 2026 · University of Wolverhampton
           </div>
+
+          <h1 className="text-4xl md:text-6xl font-display font-bold mb-4 leading-tight drop-shadow-lg">
+            Research and Employability Corner
+          </h1>
 
           {/* Tagline */}
           <p className="text-xl md:text-2xl font-display font-semibold text-yellow-300 mb-4 drop-shadow">
