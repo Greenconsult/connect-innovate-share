@@ -56,7 +56,7 @@ const Contact = () => {
                     <p className="text-muted-foreground text-sm font-body leading-relaxed">
                       Department of Computing & Mathematical Sciences<br />
                       University of Wolverhampton<br />
-                      City Campus, Wolverhampton, WV10 0JP
+                      City Campus, Wolverhampton, WV1 1LY
                     </p>
                   </div>
                 </div>
