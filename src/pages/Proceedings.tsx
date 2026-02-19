@@ -62,7 +62,7 @@ const Proceedings = () => {
           <div className="bg-white border border-border rounded-xl p-6 shadow-sm space-y-4 mb-10">
             {[
               { label: "Abstract Length", value: "250–500 words" },
-              { label: "Presentation Duration", value: "20 minutes + 5 minutes Q&A" },
+              { label: "Presentation Duration", value: "15 minutes + 5 minutes Q&A" },
               { label: "Format", value: "PDF or Word document" },
             ].map((g) => (
               <div key={g.label} className="flex items-center gap-3">
