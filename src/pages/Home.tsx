@@ -69,16 +69,18 @@ const Home = () => {
 
 
 
-          {/* Countdown */}
-          <div className="flex items-center justify-center gap-3 mb-10">
-            <Pad value={days} label="Days" />
-            <span className="text-white/40 font-display text-3xl font-bold mb-5">:</span>
-            <Pad value={hours} label="Hours" />
-            <span className="text-white/40 font-display text-3xl font-bold mb-5">:</span>
-            <Pad value={minutes} label="Mins" />
-            <span className="text-white/40 font-display text-3xl font-bold mb-5">:</span>
-            <Pad value={seconds} label="Secs" />
-          </div>
+          {/* Countdown — only show within 20 days of the event */}
+          {days <= 20 && (
+            <div className="flex items-center justify-center gap-3 mb-10">
+              <Pad value={days} label="Days" />
+              <span className="text-white/40 font-display text-3xl font-bold mb-5">:</span>
+              <Pad value={hours} label="Hours" />
+              <span className="text-white/40 font-display text-3xl font-bold mb-5">:</span>
+              <Pad value={minutes} label="Mins" />
+              <span className="text-white/40 font-display text-3xl font-bold mb-5">:</span>
+              <Pad value={seconds} label="Secs" />
+            </div>
+          )}
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Link
