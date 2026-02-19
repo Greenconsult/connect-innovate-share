@@ -26,7 +26,7 @@ const Schedule = () => {
             April 21, 2026
           </div>
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-3 drop-shadow-lg">Schedule</h1>
-          <p className="text-white/70 font-body text-lg">Typical event agenda for each session</p>
+          <p className="text-white/70 font-body text-lg">Event Agenda</p>
         </div>
       </section>
 
