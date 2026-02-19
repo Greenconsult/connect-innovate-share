@@ -1,8 +1,42 @@
 import { Link } from "react-router-dom";
 import { CalendarDays, MapPin, Users, ArrowRight, BookOpen, Briefcase, TrendingUp } from "lucide-react";
 import campusHero from "@/assets/campus-hero.jpg";
+import { useEffect, useState } from "react";
+
+const EVENT_DATE = new Date("2026-04-21T00:00:00");
+
+function useCountdown(target: Date) {
+  const calc = () => {
+    const diff = target.getTime() - Date.now();
+    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    return {
+      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((diff / (1000 * 60)) % 60),
+      seconds: Math.floor((diff / 1000) % 60),
+    };
+  };
+  const [time, setTime] = useState(calc);
+  useEffect(() => {
+    const id = setInterval(() => setTime(calc()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
+
+const Pad = ({ value, label }: { value: number; label: string }) => (
+  <div className="flex flex-col items-center">
+    <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-lg px-4 py-2 min-w-[64px] text-center">
+      <span className="text-3xl md:text-4xl font-display font-bold text-white leading-none">
+        {String(value).padStart(2, "0")}
+      </span>
+    </div>
+    <span className="text-white/60 font-body text-xs uppercase tracking-widest mt-1.5">{label}</span>
+  </div>
+);
 
 const Home = () => {
+  const { days, hours, minutes, seconds } = useCountdown(EVENT_DATE);
   return (
     <>
       {/* Hero with campus image */}
@@ -34,6 +68,17 @@ const Home = () => {
           </p>
 
 
+
+          {/* Countdown */}
+          <div className="flex items-center justify-center gap-3 mb-10">
+            <Pad value={days} label="Days" />
+            <span className="text-white/40 font-display text-3xl font-bold mb-5">:</span>
+            <Pad value={hours} label="Hours" />
+            <span className="text-white/40 font-display text-3xl font-bold mb-5">:</span>
+            <Pad value={minutes} label="Mins" />
+            <span className="text-white/40 font-display text-3xl font-bold mb-5">:</span>
+            <Pad value={seconds} label="Secs" />
+          </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Link
