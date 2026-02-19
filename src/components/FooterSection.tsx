@@ -8,7 +8,7 @@ const FooterSection = () => {
           <div>
             <h3 className="font-display font-bold text-lg mb-3">Research and Employability Corner</h3>
             <p className="text-primary-foreground/70 text-sm font-body leading-relaxed">
-              Building a Research Culture in Computing & Mathematical Sciences at the University of Wolverhampton.
+              Showcasing Research. Shaping Careers.
             </p>
           </div>
           <div>
