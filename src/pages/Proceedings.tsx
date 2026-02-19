@@ -41,7 +41,7 @@ const Proceedings = () => {
             <div>
               <h2 className="font-display font-bold text-white mb-2 text-lg">We Welcome Your Research</h2>
               <p className="text-white/70 font-body text-sm leading-relaxed">
-                Research Corner invites abstract submissions from undergraduate students and postgraduate students of the Department of Computing & Mathematical Sciences. Proceedings of abstract will be available on this page after the event.
+                Research and Employability Corner invites abstract submissions from undergraduate students and postgraduate students of the Department of Computing & Mathematical Sciences. Proceedings of abstract will be available on this page after the event.
               </p>
             </div>
           </div>
