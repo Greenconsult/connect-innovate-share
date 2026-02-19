@@ -96,7 +96,7 @@ const Speakers = () => {
 
           <div className="text-center mt-12 p-6 bg-slate-800 rounded-xl max-w-lg mx-auto">
             <p className="text-white/80 font-body text-sm">
-              Interested in speaking at Research Corner?{" "}
+              Interested in speaking at Research and Employability Corner?{" "}
               <a href="/contact" className="text-yellow-400 font-semibold hover:underline">Contact us</a>
             </p>
           </div>
