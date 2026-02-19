@@ -29,7 +29,7 @@ const Proceedings = () => {
             Call for Abstracts
           </div>
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-3 drop-shadow-lg">Proceedings</h1>
-          <p className="text-white/70 font-body text-lg">Access research presentations and abstracts</p>
+          <p className="text-white/70 font-body text-lg">Access all research presentations and abstracts here after the event</p>
         </div>
       </section>
 
