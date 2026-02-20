@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import { Download } from "lucide-react";
-import uniLogo from "@/assets/uni_logo-2.png";
 
 const Flyer = () => {
   const flyerRef = useRef<HTMLDivElement>(null);
@@ -36,7 +35,26 @@ const Flyer = () => {
       >
         {/* Logo */}
         <div className="flex justify-center py-6" style={{ background: "linear-gradient(135deg, hsl(215, 60%, 15%) 0%, hsl(225, 55%, 22%) 50%, hsl(210, 50%, 18%) 100%)" }}>
-          <img src={uniLogo} alt="University of Wolverhampton" className="h-16 object-contain" style={{ mixBlendMode: "screen" }} />
+          <svg width="280" height="50" viewBox="0 0 280 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* UW geometric mark */}
+            <g>
+              {/* U shape - left stroke */}
+              <path d="M4 4 L4 30 Q4 42 16 42 L20 42 L20 4 L14 4 L14 36 L12 36 Q10 36 10 34 L10 4 Z" fill="white"/>
+              {/* W shape */}
+              <path d="M26 4 L30 36 L34 18 L38 36 L42 4 L36 4 L34 24 L30 4 L26 4Z" fill="white"/>
+              {/* Geometric diamond/arrow accent */}
+              <path d="M48 4 L60 24 L48 44 L36 24 Z" fill="white" opacity="0.9"/>
+              <path d="M48 10 L56 24 L48 38 L40 24 Z" fill="hsl(215, 60%, 18%)"/>
+              <path d="M48 16 L52 24 L48 32 L44 24 Z" fill="white" opacity="0.8"/>
+            </g>
+            {/* Text */}
+            <text x="72" y="20" fill="white" fontSize="11" fontFamily="Arial, Helvetica, sans-serif" fontWeight="600" letterSpacing="2">
+              UNIVERSITY OF
+            </text>
+            <text x="72" y="40" fill="white" fontSize="16" fontFamily="Arial, Helvetica, sans-serif" fontWeight="800" letterSpacing="3">
+              WOLVERHAMPTON
+            </text>
+          </svg>
         </div>
 
         {/* Main body */}
