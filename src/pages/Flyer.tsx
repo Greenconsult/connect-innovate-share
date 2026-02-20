@@ -41,7 +41,7 @@ const Flyer = () => {
             background: "linear-gradient(135deg, hsl(50, 95%, 50%) 0%, hsl(55, 100%, 55%) 50%, hsl(50, 95%, 50%) 100%)",
           }}
         >
-          <img src={uniLogo} alt="University of Wolverhampton" className="h-16 object-contain" />
+          <img src={uniLogo} alt="University of Wolverhampton" className="h-16 object-contain" style={{ mixBlendMode: "screen" }} />
         </div>
 
         {/* Main body */}
