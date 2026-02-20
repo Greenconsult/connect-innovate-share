@@ -49,7 +49,7 @@ const Flyer = () => {
         {/* Main dark body */}
         <div
           className="px-12 py-10"
-          style={{ backgroundColor: "hsl(220, 15%, 14%)" }}
+          style={{ backgroundColor: "hsl(215, 50%, 18%)" }}
         >
           {/* Title */}
           <h1 className="text-4xl font-bold leading-tight text-white mb-1">
