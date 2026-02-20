@@ -33,76 +33,100 @@ const Flyer = () => {
         className="w-[640px] overflow-hidden"
         style={{ fontFamily: "'Merriweather', Georgia, serif" }}
       >
-        {/* Top gold header bar */}
+        {/* Top gold header */}
         <div
-          className="px-10 py-6 text-center"
-          style={{ backgroundColor: "hsl(42, 65%, 55%)" }}
+          className="px-10 py-5 text-center"
+          style={{
+            background: "linear-gradient(135deg, hsl(42, 80%, 50%) 0%, hsl(35, 90%, 55%) 50%, hsl(42, 80%, 50%) 100%)",
+          }}
         >
-          <p className="text-xs tracking-[0.3em] uppercase font-sans font-bold text-black/70 mb-1">
-            University of Wolverhampton
+          <p className="text-sm tracking-[0.25em] uppercase font-sans font-bold text-black/80">
+            ✦ University of Wolverhampton ✦
           </p>
         </div>
 
-        {/* Main dark body */}
+        {/* Main body */}
         <div
-          className="px-12 py-10"
-          style={{ backgroundColor: "hsl(215, 50%, 18%)" }}
+          className="px-12 pt-10 pb-8 relative"
+          style={{
+            background: "linear-gradient(160deg, hsl(215, 60%, 15%) 0%, hsl(225, 55%, 22%) 40%, hsl(210, 50%, 18%) 100%)",
+          }}
         >
+          {/* Decorative circles */}
+          <div
+            className="absolute top-6 right-6 w-32 h-32 rounded-full opacity-10"
+            style={{ background: "radial-gradient(circle, hsl(42, 80%, 55%) 0%, transparent 70%)" }}
+          />
+          <div
+            className="absolute bottom-20 left-4 w-24 h-24 rounded-full opacity-8"
+            style={{ background: "radial-gradient(circle, hsl(195, 80%, 50%) 0%, transparent 70%)" }}
+          />
+
+          {/* Badge */}
+          <div
+            className="inline-block px-5 py-1.5 rounded-full text-xs font-sans font-bold uppercase tracking-[0.2em] mb-6"
+            style={{
+              background: "linear-gradient(135deg, hsl(42, 80%, 50%), hsl(35, 90%, 55%))",
+              color: "hsl(215, 60%, 12%)",
+            }}
+          >
+            REC 2026
+          </div>
+
           {/* Title */}
-          <h1 className="text-4xl font-bold leading-tight text-white mb-1">
-            Research and
+          <h1 className="text-[44px] font-bold leading-[1.1] text-white mb-1">
+            Research &
           </h1>
-          <h1 className="text-4xl font-bold leading-tight text-white mb-1">
+          <h1 className="text-[44px] font-bold leading-[1.1] text-white mb-1">
             Employability
           </h1>
           <h1
-            className="text-4xl font-bold leading-tight mb-6"
-            style={{ color: "hsl(42, 65%, 55%)" }}
+            className="text-[44px] font-bold leading-[1.1] mb-5"
+            style={{
+              background: "linear-gradient(135deg, hsl(42, 85%, 60%), hsl(30, 90%, 65%))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
           >
             Corner
           </h1>
 
           {/* Tagline */}
-          <p
-            className="text-base italic font-semibold mb-10"
-            style={{ color: "hsl(42, 65%, 75%)" }}
-          >
+          <p className="text-base italic font-semibold mb-8" style={{ color: "hsl(195, 70%, 70%)" }}>
             Research-Driven · Industry-Ready · Career-Focused
           </p>
 
-          {/* Divider */}
+          {/* Accent line */}
           <div
-            className="w-16 h-1 rounded mb-10"
-            style={{ backgroundColor: "hsl(42, 65%, 55%)" }}
+            className="w-20 h-1.5 rounded-full mb-8"
+            style={{ background: "linear-gradient(90deg, hsl(42, 80%, 55%), hsl(195, 70%, 55%))" }}
           />
 
           {/* Details */}
-          <div className="space-y-6 mb-10">
-            <DetailRow label="DATE" value="April 21, 2026" />
-            <DetailRow label="VENUE" value="City Campus, University of Wolverhampton" />
-            <DetailRow label="DURATION" value="3-Hour Interactive Session" />
-            <DetailRow label="OPEN TO" value="All Students — UG, PG & Recent Graduates" />
+          <div className="grid grid-cols-2 gap-x-6 gap-y-5 mb-8">
+            <DetailRow label="DATE" value="April 21, 2026" color="hsl(42, 80%, 55%)" />
+            <DetailRow label="DURATION" value="3-Hour Session" color="hsl(195, 70%, 55%)" />
+            <DetailRow label="VENUE" value="City Campus, Wolverhampton" color="hsl(160, 60%, 50%)" />
+            <DetailRow label="OPEN TO" value="UG, PG & Graduates" color="hsl(280, 60%, 65%)" />
           </div>
 
-          {/* Divider */}
-          <div className="w-full h-px bg-white/15 mb-10" />
-
           {/* Highlights */}
-          <p className="text-white/50 text-[10px] uppercase tracking-[0.25em] font-sans font-bold mb-4">
-            What to Expect
-          </p>
-          <div className="grid grid-cols-3 gap-4 mb-10">
+          <div className="grid grid-cols-3 gap-3 mb-8">
             {[
-              { icon: "🔬", text: "Present Your Research" },
-              { icon: "🤝", text: "Network & Collaborate" },
-              { icon: "📈", text: "Build Your Profile" },
+              { icon: "🔬", text: "Present Your Research", accent: "hsl(42, 80%, 55%)" },
+              { icon: "🤝", text: "Network & Collaborate", accent: "hsl(195, 70%, 55%)" },
+              { icon: "📈", text: "Build Your Profile", accent: "hsl(160, 60%, 50%)" },
             ].map((h) => (
               <div
                 key={h.text}
-                className="border border-white/15 rounded-lg p-5 text-center"
+                className="rounded-xl p-4 text-center"
+                style={{
+                  background: "hsla(0, 0%, 100%, 0.06)",
+                  borderLeft: `3px solid ${h.accent}`,
+                }}
               >
                 <div className="text-2xl mb-2">{h.icon}</div>
-                <div className="text-white text-xs font-sans font-semibold leading-snug">
+                <div className="text-white text-xs font-sans font-bold leading-snug">
                   {h.text}
                 </div>
               </div>
@@ -110,36 +134,42 @@ const Flyer = () => {
           </div>
 
           {/* Contact */}
-          <div className="border-t border-white/15 pt-6">
-            <p className="text-white/40 text-[10px] uppercase tracking-[0.25em] font-sans font-bold mb-3">
-              Contact
-            </p>
-            <p className="text-white text-sm font-sans font-semibold mb-1">
-              📞 +44 (0)7438 023912
-            </p>
-            <p className="text-white/60 text-xs font-sans">
-              University of Wolverhampton · WV1 1LY
-            </p>
+          <div
+            className="rounded-xl px-6 py-4 flex items-center justify-between"
+            style={{ background: "hsla(0, 0%, 100%, 0.08)" }}
+          >
+            <div>
+              <p className="text-white/40 text-[9px] uppercase tracking-[0.25em] font-sans font-bold mb-1">
+                Enquiries
+              </p>
+              <p className="text-white text-sm font-sans font-semibold">
+                📞 +44 (0)7438 023912
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="text-white/40 text-[9px] uppercase tracking-[0.25em] font-sans font-bold mb-1">
+                Postcode
+              </p>
+              <p className="text-white text-sm font-sans font-semibold">WV1 1LY</p>
+            </div>
           </div>
         </div>
 
-        {/* Bottom gold bar */}
+        {/* Bottom gradient bar */}
         <div
-          className="px-10 py-4 text-center"
-          style={{ backgroundColor: "hsl(42, 65%, 55%)" }}
-        >
-          <p className="text-sm font-sans font-bold text-black tracking-wide">
-            REC 2026
-          </p>
-        </div>
+          className="h-3"
+          style={{
+            background: "linear-gradient(90deg, hsl(42, 80%, 50%), hsl(195, 70%, 55%), hsl(160, 60%, 50%), hsl(280, 60%, 65%))",
+          }}
+        />
       </div>
     </div>
   );
 };
 
-const DetailRow = ({ label, value }: { label: string; value: string }) => (
+const DetailRow = ({ label, value, color }: { label: string; value: string; color: string }) => (
   <div>
-    <p className="text-white/40 text-[10px] uppercase tracking-[0.25em] font-sans font-bold mb-1">
+    <p className="text-[9px] uppercase tracking-[0.25em] font-sans font-bold mb-1" style={{ color }}>
       {label}
     </p>
     <p className="text-white text-sm font-sans font-semibold">{value}</p>
