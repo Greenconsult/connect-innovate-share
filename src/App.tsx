@@ -12,6 +12,7 @@ import Proceedings from "./pages/Proceedings";
 import Committee from "./pages/Committee";
 import Venue from "./pages/Venue";
 import Contact from "./pages/Contact";
+import Flyer from "./pages/Flyer";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/committee" element={<Committee />} />
             <Route path="/venue" element={<Venue />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/flyer" element={<Flyer />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
