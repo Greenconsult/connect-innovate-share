@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import { Download } from "lucide-react";
-
+import uniLogo from "@/assets/uni_logo-2.png";
 
 const Flyer = () => {
   const flyerRef = useRef<HTMLDivElement>(null);
@@ -34,7 +34,10 @@ const Flyer = () => {
         className="w-[640px] overflow-hidden"
         style={{ fontFamily: "'Merriweather', Georgia, serif" }}
       >
-        {/* Top gold header */}
+        {/* Logo */}
+        <div className="flex justify-center py-6" style={{ background: "linear-gradient(135deg, hsl(215, 60%, 15%) 0%, hsl(225, 55%, 22%) 50%, hsl(210, 50%, 18%) 100%)" }}>
+          <img src={uniLogo} alt="University of Wolverhampton" className="h-16 object-contain" />
+        </div>
 
         {/* Main body */}
         <div
