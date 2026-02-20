@@ -96,9 +96,9 @@ const Flyer = () => {
           {/* Details */}
           <div className="grid grid-cols-2 gap-x-6 gap-y-5 mb-8">
             <DetailRow label="DATE" value="April 21, 2026" color="hsl(50, 95%, 55%)" />
-            <DetailRow label="DURATION" value="3-Hour Session" color="hsl(195, 70%, 55%)" />
-            <DetailRow label="VENUE" value="City Campus, Wolverhampton" color="hsl(160, 60%, 50%)" />
-            <DetailRow label="OPEN TO" value="UG, PG & Graduates" color="hsl(280, 60%, 65%)" />
+            <DetailRow label="DURATION" value="3-Hour Session" color="hsl(50, 95%, 55%)" />
+            <DetailRow label="VENUE" value="City Campus, Wolverhampton" color="hsl(50, 95%, 55%)" />
+            <DetailRow label="OPEN TO" value="UG, PG & Graduates" color="hsl(50, 95%, 55%)" />
           </div>
 
           {/* Highlights */}
