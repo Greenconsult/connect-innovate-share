@@ -83,7 +83,7 @@ const Flyer = () => {
           </h1>
 
           {/* Tagline */}
-          <p className="text-base italic font-semibold mb-8" style={{ color: "hsl(195, 70%, 70%)" }}>
+          <p className="text-base font-semibold mb-8" style={{ color: "hsl(195, 70%, 70%)" }}>
             Research-Driven · Industry-Ready · Career-Focused
           </p>
 
