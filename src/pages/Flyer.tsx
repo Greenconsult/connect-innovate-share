@@ -39,9 +39,6 @@ const Flyer = () => {
           style={{ backgroundColor: "hsl(42, 65%, 55%)" }}
         >
           <p className="text-xs tracking-[0.3em] uppercase font-sans font-bold text-black/70 mb-1">
-            Department of Computing & Mathematical Sciences
-          </p>
-          <p className="text-xs font-sans text-black/60">
             University of Wolverhampton
           </p>
         </div>
