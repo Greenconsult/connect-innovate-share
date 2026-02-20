@@ -36,7 +36,7 @@ const Flyer = () => {
       >
         {/* Top gold header */}
         <div
-          className="px-10 py-5 text-center"
+          className="px-10 py-5 text-left"
           style={{
             background: "linear-gradient(135deg, hsl(215, 60%, 15%) 0%, hsl(225, 55%, 22%) 50%, hsl(210, 50%, 18%) 100%)",
           }}
