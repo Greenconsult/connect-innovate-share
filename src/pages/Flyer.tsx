@@ -37,7 +37,7 @@ const Flyer = () => {
         <div
           className="px-10 py-5 text-center"
           style={{
-            background: "linear-gradient(135deg, hsl(42, 80%, 50%) 0%, hsl(35, 90%, 55%) 50%, hsl(42, 80%, 50%) 100%)",
+            background: "linear-gradient(135deg, hsl(50, 95%, 50%) 0%, hsl(55, 100%, 55%) 50%, hsl(50, 95%, 50%) 100%)",
           }}
         >
           <p className="text-sm tracking-[0.25em] uppercase font-sans font-bold text-black/80">
@@ -55,7 +55,7 @@ const Flyer = () => {
           {/* Decorative circles */}
           <div
             className="absolute top-6 right-6 w-32 h-32 rounded-full opacity-10"
-            style={{ background: "radial-gradient(circle, hsl(42, 80%, 55%) 0%, transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, hsl(50, 95%, 55%) 0%, transparent 70%)" }}
           />
           <div
             className="absolute bottom-20 left-4 w-24 h-24 rounded-full opacity-8"
@@ -66,7 +66,7 @@ const Flyer = () => {
           <div
             className="inline-block px-5 py-1.5 rounded-full text-xs font-sans font-bold uppercase tracking-[0.2em] mb-6"
             style={{
-              background: "linear-gradient(135deg, hsl(42, 80%, 50%), hsl(35, 90%, 55%))",
+              background: "linear-gradient(135deg, hsl(50, 95%, 50%), hsl(55, 100%, 55%))",
               color: "hsl(215, 60%, 12%)",
             }}
           >
@@ -83,7 +83,7 @@ const Flyer = () => {
           <h1
             className="text-[44px] font-bold leading-[1.1] mb-5"
             style={{
-              background: "linear-gradient(135deg, hsl(42, 85%, 60%), hsl(30, 90%, 65%))",
+              background: "linear-gradient(135deg, hsl(50, 95%, 60%), hsl(55, 100%, 65%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -99,12 +99,12 @@ const Flyer = () => {
           {/* Accent line */}
           <div
             className="w-20 h-1.5 rounded-full mb-8"
-            style={{ background: "linear-gradient(90deg, hsl(42, 80%, 55%), hsl(195, 70%, 55%))" }}
+            style={{ background: "linear-gradient(90deg, hsl(50, 95%, 55%), hsl(195, 70%, 55%))" }}
           />
 
           {/* Details */}
           <div className="grid grid-cols-2 gap-x-6 gap-y-5 mb-8">
-            <DetailRow label="DATE" value="April 21, 2026" color="hsl(42, 80%, 55%)" />
+            <DetailRow label="DATE" value="April 21, 2026" color="hsl(50, 95%, 55%)" />
             <DetailRow label="DURATION" value="3-Hour Session" color="hsl(195, 70%, 55%)" />
             <DetailRow label="VENUE" value="City Campus, Wolverhampton" color="hsl(160, 60%, 50%)" />
             <DetailRow label="OPEN TO" value="UG, PG & Graduates" color="hsl(280, 60%, 65%)" />
@@ -113,7 +113,7 @@ const Flyer = () => {
           {/* Highlights */}
           <div className="grid grid-cols-3 gap-3 mb-8">
             {[
-              { icon: "🔬", text: "Present Your Research", accent: "hsl(42, 80%, 55%)" },
+              { icon: "🔬", text: "Present Your Research", accent: "hsl(50, 95%, 55%)" },
               { icon: "🤝", text: "Network & Collaborate", accent: "hsl(195, 70%, 55%)" },
               { icon: "📈", text: "Build Your Profile", accent: "hsl(160, 60%, 50%)" },
             ].map((h) => (
@@ -159,7 +159,7 @@ const Flyer = () => {
         <div
           className="h-3"
           style={{
-            background: "linear-gradient(90deg, hsl(42, 80%, 50%), hsl(195, 70%, 55%), hsl(160, 60%, 50%), hsl(280, 60%, 65%))",
+            background: "linear-gradient(90deg, hsl(50, 95%, 50%), hsl(195, 70%, 55%), hsl(160, 60%, 50%), hsl(280, 60%, 65%))",
           }}
         />
       </div>
