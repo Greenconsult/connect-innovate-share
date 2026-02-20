@@ -74,14 +74,11 @@ const Flyer = () => {
           </div>
 
           {/* Title */}
-          <h1 className="text-[44px] font-bold leading-[1.1] text-white mb-1">
-            Research &
-          </h1>
-          <h1 className="text-[44px] font-bold leading-[1.1] text-white mb-1">
-            Employability
+          <h1 className="text-[40px] font-bold leading-[1.1] text-white mb-1 tracking-wide">
+            Research & Employability
           </h1>
           <h1
-            className="text-[44px] font-bold leading-[1.1] mb-5"
+            className="text-[40px] font-bold leading-[1.1] mb-5"
             style={{
               background: "linear-gradient(135deg, hsl(50, 95%, 60%), hsl(55, 100%, 65%))",
               WebkitBackgroundClip: "text",
