@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import { Download } from "lucide-react";
-import campusHero from "@/assets/campus-hero.jpg";
 
 const Flyer = () => {
   const flyerRef = useRef<HTMLDivElement>(null);
@@ -20,7 +19,7 @@ const Flyer = () => {
   };
 
   return (
-    <div className="py-12 flex flex-col items-center gap-6">
+    <div className="py-12 flex flex-col items-center gap-6 px-4">
       <button
         onClick={handleDownload}
         className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded font-body font-semibold text-sm hover:bg-primary/90 transition-colors"
@@ -28,59 +27,74 @@ const Flyer = () => {
         <Download className="w-4 h-4" /> Download Flyer
       </button>
 
-      {/* Flyer canvas */}
+      {/* Flyer */}
       <div
         ref={flyerRef}
-        className="relative w-[640px] min-h-[900px] overflow-hidden text-white"
-        style={{
-          fontFamily: "'Merriweather', Georgia, serif",
-        }}
+        className="w-[640px] overflow-hidden"
+        style={{ fontFamily: "'Merriweather', Georgia, serif" }}
       >
-        {/* Background */}
-        <img
-          src={campusHero}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(220,15%,12%)/0.88] via-[hsl(215,20%,18%)/0.92] to-[hsl(220,15%,10%)/0.95]" />
+        {/* Top gold header bar */}
+        <div
+          className="px-10 py-6 text-center"
+          style={{ backgroundColor: "hsl(42, 65%, 55%)" }}
+        >
+          <p className="text-xs tracking-[0.3em] uppercase font-sans font-bold text-black/70 mb-1">
+            Department of Computing & Mathematical Sciences
+          </p>
+          <p className="text-xs font-sans text-black/60">
+            University of Wolverhampton
+          </p>
+        </div>
 
-        {/* Content */}
-        <div className="relative z-10 px-12 py-14 flex flex-col h-full">
-          {/* Top badge */}
-          <div className="text-xs tracking-[0.25em] uppercase text-white/60 font-sans mb-8">
-            Department of Computing &amp; Mathematical Sciences
-          </div>
-
-          {/* Big title */}
-          <h1 className="text-5xl font-bold leading-[1.15] mb-2">
+        {/* Main dark body */}
+        <div
+          className="px-12 py-10"
+          style={{ backgroundColor: "hsl(220, 15%, 14%)" }}
+        >
+          {/* Title */}
+          <h1 className="text-4xl font-bold leading-tight text-white mb-1">
             Research and
-            <br />
+          </h1>
+          <h1 className="text-4xl font-bold leading-tight text-white mb-1">
             Employability
-            <br />
-            <span className="text-[hsl(42,65%,55%)]">Corner</span>
+          </h1>
+          <h1
+            className="text-4xl font-bold leading-tight mb-6"
+            style={{ color: "hsl(42, 65%, 55%)" }}
+          >
+            Corner
           </h1>
 
-          <div className="flex items-center gap-3 mt-4 mb-8">
-            <span className="bg-[hsl(42,65%,55%)] text-black font-bold text-lg px-4 py-1 rounded font-sans">
-              REC 2026
-            </span>
-          </div>
-
           {/* Tagline */}
-          <p className="text-[hsl(42,65%,75%)] text-lg font-semibold italic mb-10">
+          <p
+            className="text-base italic font-semibold mb-10"
+            style={{ color: "hsl(42, 65%, 75%)" }}
+          >
             Research-Driven · Industry-Ready · Career-Focused
           </p>
 
-          {/* Details grid */}
-          <div className="space-y-5 mb-10">
-            <DetailRow emoji="📅" label="Date" value="April 21, 2026" />
-            <DetailRow emoji="📍" label="Venue" value="City Campus, University of Wolverhampton" />
-            <DetailRow emoji="🕐" label="Duration" value="3-Hour Interactive Session" />
-            <DetailRow emoji="🎓" label="Open To" value="All Students — UG, PG & Recent Graduates" />
+          {/* Divider */}
+          <div
+            className="w-16 h-1 rounded mb-10"
+            style={{ backgroundColor: "hsl(42, 65%, 55%)" }}
+          />
+
+          {/* Details */}
+          <div className="space-y-6 mb-10">
+            <DetailRow label="DATE" value="April 21, 2026" />
+            <DetailRow label="VENUE" value="City Campus, University of Wolverhampton" />
+            <DetailRow label="DURATION" value="3-Hour Interactive Session" />
+            <DetailRow label="OPEN TO" value="All Students — UG, PG & Recent Graduates" />
           </div>
 
+          {/* Divider */}
+          <div className="w-full h-px bg-white/15 mb-10" />
+
           {/* Highlights */}
-          <div className="grid grid-cols-3 gap-3 mb-10">
+          <p className="text-white/50 text-[10px] uppercase tracking-[0.25em] font-sans font-bold mb-4">
+            What to Expect
+          </p>
+          <div className="grid grid-cols-3 gap-4 mb-10">
             {[
               { icon: "🔬", text: "Present Your Research" },
               { icon: "🤝", text: "Network & Collaborate" },
@@ -88,37 +102,50 @@ const Flyer = () => {
             ].map((h) => (
               <div
                 key={h.text}
-                className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-lg p-4 text-center"
+                className="border border-white/15 rounded-lg p-5 text-center"
               >
                 <div className="text-2xl mb-2">{h.icon}</div>
-                <div className="text-xs font-sans font-semibold leading-tight">{h.text}</div>
+                <div className="text-white text-xs font-sans font-semibold leading-snug">
+                  {h.text}
+                </div>
               </div>
             ))}
           </div>
 
-          {/* Bottom contact */}
-          <div className="mt-auto pt-6 border-t border-white/15">
-            <p className="text-white/50 text-xs font-sans mb-1">For enquiries</p>
-            <p className="text-sm font-sans font-semibold">
+          {/* Contact */}
+          <div className="border-t border-white/15 pt-6">
+            <p className="text-white/40 text-[10px] uppercase tracking-[0.25em] font-sans font-bold mb-3">
+              Contact
+            </p>
+            <p className="text-white text-sm font-sans font-semibold mb-1">
               📞 +44 (0)7438 023912
             </p>
-            <p className="text-[hsl(42,65%,55%)] text-xs font-sans mt-3 tracking-wide uppercase font-bold">
+            <p className="text-white/60 text-xs font-sans">
               University of Wolverhampton · WV1 1LY
             </p>
           </div>
+        </div>
+
+        {/* Bottom gold bar */}
+        <div
+          className="px-10 py-4 text-center"
+          style={{ backgroundColor: "hsl(42, 65%, 55%)" }}
+        >
+          <p className="text-sm font-sans font-bold text-black tracking-wide">
+            REC 2026
+          </p>
         </div>
       </div>
     </div>
   );
 };
 
-const DetailRow = ({ emoji, label, value }: { emoji: string; label: string; value: string }) => (
-  <div className="flex items-start gap-3">
-    <span className="text-xl">{emoji}</span>
-    <div>
-      <div className="text-white/50 text-[10px] uppercase tracking-widest font-sans">{label}</div>
-      <div className="text-white text-sm font-sans font-semibold">{value}</div>
-    </div>
+const DetailRow = ({ label, value }: { label: string; value: string }) => (
+  <div>
+    <p className="text-white/40 text-[10px] uppercase tracking-[0.25em] font-sans font-bold mb-1">
+      {label}
+    </p>
+    <p className="text-white text-sm font-sans font-semibold">{value}</p>
   </div>
 );
 
