@@ -48,7 +48,7 @@ const Flyer = () => {
         <div
           className="px-12 pt-10 pb-8 relative"
           style={{
-            background: "linear-gradient(160deg, hsl(215, 60%, 15%) 0%, hsl(225, 55%, 22%) 40%, hsl(210, 50%, 18%) 100%)",
+            background: "linear-gradient(135deg, hsl(215, 60%, 15%) 0%, hsl(225, 55%, 22%) 40%, hsl(210, 50%, 18%) 100%)",
           }}
         >
           {/* Decorative circles */}
