@@ -41,12 +41,7 @@ const Flyer = () => {
             background: "linear-gradient(135deg, hsl(50, 95%, 50%) 0%, hsl(55, 100%, 55%) 50%, hsl(50, 95%, 50%) 100%)",
           }}
         >
-          <div className="flex items-center justify-center gap-3">
-            <img src={uniLogo} alt="University of Wolverhampton" className="h-10 object-contain" />
-            <p className="text-sm tracking-[0.25em] uppercase font-sans font-bold text-black/80">
-              ✦ University of Wolverhampton ✦
-            </p>
-          </div>
+          <img src={uniLogo} alt="University of Wolverhampton" className="h-16 object-contain" />
         </div>
 
         {/* Main body */}
