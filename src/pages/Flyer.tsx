@@ -102,7 +102,7 @@ const Flyer = () => {
             {[
               { icon: "🔬", text: "Present Your Research", accent: "hsl(50, 95%, 55%)" },
               { icon: "🤝", text: "Network & Collaborate", accent: "hsl(195, 70%, 55%)" },
-              { icon: "📈", text: "Build Your Profile", accent: "hsl(160, 60%, 50%)" },
+              { icon: "📈", text: "Connect With Industry", accent: "hsl(160, 60%, 50%)" },
             ].map((h) => (
               <div
                 key={h.text}
