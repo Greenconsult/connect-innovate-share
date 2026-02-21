@@ -140,6 +140,10 @@ const Flyer = () => {
               <p className="text-white text-sm font-sans font-semibold">WV1 1LY</p>
             </div>
           </div>
+          {/* Funded by */}
+          <p className="text-white/50 text-[10px] font-sans text-center mt-6">
+            Funded by the Department of Computing, University of Wolverhampton
+          </p>
         </div>
 
         {/* Bottom gradient bar */}
