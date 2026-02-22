@@ -201,7 +201,16 @@ export async function saveEvent(event: EventData): Promise<void> {
 
   await replaceChildren(
     "speakers",
-    event.speakers.map((s) => ({ ...s, event_id: event.id }))
+    event.speakers.map((s) => ({
+      id: s.id,
+      event_id: event.id,
+      name: s.name,
+      role: s.role,
+      affiliation: s.affiliation,
+      topic: s.topic,
+      bio: s.bio,
+      image_url: s.imageUrl || null,
+    }))
   );
   await replaceChildren(
     "schedule_items",
