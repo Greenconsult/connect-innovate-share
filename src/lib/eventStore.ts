@@ -74,6 +74,11 @@ function uid(): string {
 
 /** Map a DB event row + related rows into the app-level EventData shape */
 function toEventData(row: any): EventData {
+  // Auto-compute status from the event date
+  const eventDate = row.date ? new Date(row.date + "T23:59:59") : null;
+  const computedStatus: "upcoming" | "past" =
+    eventDate && eventDate.getTime() < Date.now() ? "past" : "upcoming";
+
   return {
     id: row.id,
     name: row.name,
@@ -85,7 +90,7 @@ function toEventData(row: any): EventData {
     tagline: row.tagline,
     audience: row.audience,
     isCurrent: row.is_current,
-    status: row.status,
+    status: computedStatus,
     fundedBy: row.funded_by,
     speakers: (row.speakers ?? []).map((s: any) => ({
       id: s.id,

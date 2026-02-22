@@ -1,6 +1,5 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { EventData } from "@/lib/eventStore";
 
 interface Props {
@@ -47,13 +46,11 @@ const EventDetailsForm = ({ event, onChange }: Props) => {
         </div>
         <div className="space-y-1.5">
           <Label>Status</Label>
-          <Select value={event.status} onValueChange={(v) => onChange({ status: v as "upcoming" | "past" })}>
-            <SelectTrigger><SelectValue /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="upcoming">Upcoming</SelectItem>
-              <SelectItem value="past">Past</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className={`flex items-center gap-2 h-10 px-3 rounded-md border border-border text-sm font-body ${event.status === "upcoming" ? "bg-emerald-50 text-emerald-700" : "bg-muted text-muted-foreground"}`}>
+            <span className={`w-2 h-2 rounded-full ${event.status === "upcoming" ? "bg-emerald-500" : "bg-muted-foreground"}`} />
+            {event.status === "upcoming" ? "Upcoming" : "Past"}
+            <span className="text-xs text-muted-foreground ml-auto">(auto from date)</span>
+          </div>
         </div>
       </div>
     </div>
