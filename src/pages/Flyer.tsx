@@ -2,11 +2,11 @@ import { useRef } from "react";
 import html2canvas from "html2canvas";
 import { Download } from "lucide-react";
 import uniLogo from "@/assets/uni_logo-2.png";
-import { getCurrentEvent } from "@/lib/eventStore";
+import { useCurrentEvent } from "@/hooks/useEvents";
 
 const Flyer = () => {
   const flyerRef = useRef<HTMLDivElement>(null);
-  const event = getCurrentEvent();
+  const { data: event } = useCurrentEvent();
 
   const handleDownload = async () => {
     if (!flyerRef.current) return;

@@ -1,9 +1,9 @@
 import { FileText, CheckCircle, Send } from "lucide-react";
 import campusHero from "@/assets/campus-hero.jpg";
-import { getCurrentEvent } from "@/lib/eventStore";
+import { useCurrentEvent } from "@/hooks/useEvents";
 
 const Proceedings = () => {
-  const event = getCurrentEvent();
+  const { data: event } = useCurrentEvent();
   const topics = event?.topics ?? [];
   const guidelines = event?.submissionGuidelines ?? [];
   const importantDates = event?.importantDates ?? [];

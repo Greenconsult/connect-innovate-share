@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { getEvent, saveEvent, type EventData } from "@/lib/eventStore";
+import { type EventData } from "@/lib/eventStore";
+import { useEvent, useSaveEvent } from "@/hooks/useEvents";
+import { useAuth } from "@/contexts/AuthContext";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Save, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import EventDetailsForm from "@/components/admin/EventDetailsForm";
 import SpeakersForm from "@/components/admin/SpeakersForm";
@@ -16,19 +18,32 @@ const AdminEventEdit = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { user, loading: authLoading } = useAuth();
+  const { data: fetchedEvent, isLoading } = useEvent(id);
+  const saveEventMutation = useSaveEvent();
   const [event, setEvent] = useState<EventData | null>(null);
 
   useEffect(() => {
-    if (sessionStorage.getItem("rec_admin") !== "1") {
+    if (!authLoading && !user) {
       navigate("/admin", { replace: true });
-      return;
     }
-    if (id) {
-      const ev = getEvent(id);
-      if (ev) setEvent(ev);
-      else navigate("/admin/dashboard", { replace: true });
+  }, [authLoading, user]);
+
+  useEffect(() => {
+    if (fetchedEvent) {
+      setEvent(fetchedEvent);
+    } else if (!isLoading && !fetchedEvent && id) {
+      navigate("/admin/dashboard", { replace: true });
     }
-  }, [id]);
+  }, [fetchedEvent, isLoading, id]);
+
+  if (authLoading || isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-6 h-6 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   if (!event) return null;
 
@@ -36,10 +51,14 @@ const AdminEventEdit = () => {
     setEvent((prev) => prev ? { ...prev, ...partial } : prev);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (event) {
-      saveEvent(event);
-      toast({ title: "Saved", description: "Event has been saved successfully." });
+      try {
+        await saveEventMutation.mutateAsync(event);
+        toast({ title: "Saved", description: "Event has been saved successfully." });
+      } catch (err: any) {
+        toast({ title: "Error", description: err.message || "Failed to save event.", variant: "destructive" });
+      }
     }
   };
 

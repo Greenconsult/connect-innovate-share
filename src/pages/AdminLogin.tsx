@@ -1,28 +1,34 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ADMIN_PASSWORD } from "@/lib/eventStore";
+import { useAuth } from "@/contexts/AuthContext";
 import { Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const AdminLogin = () => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { user, signIn } = useAuth();
 
   // Already authenticated?
-  if (sessionStorage.getItem("rec_admin") === "1") {
+  if (user) {
     navigate("/admin/dashboard", { replace: true });
     return null;
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      sessionStorage.setItem("rec_admin", "1");
-      navigate("/admin/dashboard", { replace: true });
+    setError("");
+    setLoading(true);
+    const { error: authError } = await signIn(email, password);
+    setLoading(false);
+    if (authError) {
+      setError(authError.message);
     } else {
-      setError(true);
+      navigate("/admin/dashboard", { replace: true });
     }
   };
 
@@ -34,17 +40,26 @@ const AdminLogin = () => {
             <Lock className="w-5 h-5 text-primary" />
           </div>
           <h1 className="font-display font-bold text-xl text-foreground">Admin Access</h1>
-          <p className="text-muted-foreground text-sm font-body text-center">Enter the admin password to continue</p>
+          <p className="text-muted-foreground text-sm font-body text-center">Sign in with your admin credentials</p>
         </div>
+        <Input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => { setEmail(e.target.value); setError(""); }}
+          required
+        />
         <Input
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e) => { setPassword(e.target.value); setError(false); }}
-          className={error ? "border-destructive" : ""}
+          onChange={(e) => { setPassword(e.target.value); setError(""); }}
+          required
         />
-        {error && <p className="text-destructive text-xs font-body">Incorrect password. Please try again.</p>}
-        <Button type="submit" className="w-full">Sign In</Button>
+        {error && <p className="text-destructive text-xs font-body">{error}</p>}
+        <Button type="submit" className="w-full" disabled={loading}>
+          {loading ? "Signing in…" : "Sign In"}
+        </Button>
       </form>
     </div>
   );

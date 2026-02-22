@@ -1,4 +1,8 @@
-// Event data types and localStorage helpers
+// Event data types and Supabase database helpers
+
+import { supabase } from "./supabase";
+
+// ── Types (unchanged interface shapes for components) ──────────────
 
 export interface Speaker {
   id: string;
@@ -61,50 +65,200 @@ export interface EventData {
   fundedBy: string;
 }
 
-const STORAGE_KEY = "rec_events";
+// ── Helpers ─────────────────────────────────────────────────────────
 
 function uid(): string {
   return Math.random().toString(36).slice(2, 10);
 }
 
-export function getEvents(): EventData[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
-  } catch {}
-  // Seed with default data on first load
-  const seed = [createSeedEvent()];
-  saveEvents(seed);
-  return seed;
+/** Map a DB event row + related rows into the app-level EventData shape */
+function toEventData(row: any): EventData {
+  return {
+    id: row.id,
+    name: row.name,
+    date: row.date,
+    duration: row.duration,
+    venue: row.venue,
+    postcode: row.postcode,
+    phone: row.phone,
+    tagline: row.tagline,
+    audience: row.audience,
+    isCurrent: row.is_current,
+    status: row.status,
+    fundedBy: row.funded_by,
+    speakers: (row.speakers ?? []).map((s: any) => ({
+      id: s.id,
+      name: s.name,
+      role: s.role,
+      affiliation: s.affiliation,
+      topic: s.topic,
+      bio: s.bio,
+    })),
+    schedule: (row.schedule_items ?? []).map((s: any) => ({
+      id: s.id,
+      time: s.time,
+      title: s.title,
+      description: s.description,
+    })),
+    committee: (row.committee_members ?? []).map((c: any) => ({
+      id: c.id,
+      name: c.name,
+      role: c.role,
+      affiliation: c.affiliation,
+    })),
+    topics: (row.topics ?? []).map((t: any) => t.text),
+    submissionGuidelines: (row.submission_guidelines ?? []).map((g: any) => g.text),
+    importantDates: (row.important_dates ?? []).map((d: any) => ({
+      id: d.id,
+      label: d.label,
+      date: d.date,
+      highlight: d.highlight,
+    })),
+    flyerHighlights: (row.flyer_highlights ?? []).map((f: any) => ({
+      id: f.id,
+      icon: f.icon,
+      text: f.text,
+    })),
+  };
 }
 
-export function saveEvents(events: EventData[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+const FULL_SELECT = `
+  *,
+  speakers(*),
+  schedule_items(*),
+  committee_members(*),
+  topics(*),
+  submission_guidelines(*),
+  important_dates(*),
+  flyer_highlights(*)
+`;
+
+// ── CRUD functions (all async, backed by Supabase) ──────────────────
+
+export async function getEvents(): Promise<EventData[]> {
+  const { data, error } = await supabase
+    .from("events")
+    .select(FULL_SELECT)
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []).map(toEventData);
 }
 
-export function getEvent(id: string): EventData | undefined {
-  return getEvents().find((e) => e.id === id);
+export async function getEvent(id: string): Promise<EventData | undefined> {
+  const { data, error } = await supabase
+    .from("events")
+    .select(FULL_SELECT)
+    .eq("id", id)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data ? toEventData(data) : undefined;
 }
 
-export function getCurrentEvent(): EventData | undefined {
-  return getEvents().find((e) => e.isCurrent);
+export async function getCurrentEvent(): Promise<EventData | undefined> {
+  const { data, error } = await supabase
+    .from("events")
+    .select(FULL_SELECT)
+    .eq("is_current", true)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data ? toEventData(data) : undefined;
 }
 
-export function saveEvent(event: EventData) {
-  const events = getEvents();
-  const idx = events.findIndex((e) => e.id === event.id);
-  if (idx >= 0) events[idx] = event;
-  else events.push(event);
-  saveEvents(events);
+export async function saveEvent(event: EventData): Promise<void> {
+  // Upsert the main event row
+  const { error: eventError } = await supabase.from("events").upsert({
+    id: event.id,
+    name: event.name,
+    date: event.date,
+    duration: event.duration,
+    venue: event.venue,
+    postcode: event.postcode,
+    phone: event.phone,
+    tagline: event.tagline,
+    audience: event.audience,
+    is_current: event.isCurrent,
+    status: event.status,
+    funded_by: event.fundedBy,
+  });
+  if (eventError) throw eventError;
+
+  // Helper: delete all child rows for event, then re-insert
+  const replaceChildren = async (
+    table: string,
+    rows: Record<string, unknown>[]
+  ) => {
+    await supabase.from(table).delete().eq("event_id", event.id);
+    if (rows.length > 0) {
+      const { error } = await supabase.from(table).insert(rows);
+      if (error) throw error;
+    }
+  };
+
+  await replaceChildren(
+    "speakers",
+    event.speakers.map((s) => ({ ...s, event_id: event.id }))
+  );
+  await replaceChildren(
+    "schedule_items",
+    event.schedule.map((s) => ({ ...s, event_id: event.id }))
+  );
+  await replaceChildren(
+    "committee_members",
+    event.committee.map((c) => ({ ...c, event_id: event.id }))
+  );
+  await replaceChildren(
+    "topics",
+    event.topics.map((text, i) => ({
+      id: `${event.id}_top${i}`,
+      event_id: event.id,
+      text,
+    }))
+  );
+  await replaceChildren(
+    "submission_guidelines",
+    event.submissionGuidelines.map((text, i) => ({
+      id: `${event.id}_sg${i}`,
+      event_id: event.id,
+      text,
+    }))
+  );
+  await replaceChildren(
+    "important_dates",
+    event.importantDates.map((d) => ({
+      ...d,
+      highlight: d.highlight ?? false,
+      event_id: event.id,
+    }))
+  );
+  await replaceChildren(
+    "flyer_highlights",
+    event.flyerHighlights.map((f) => ({ ...f, event_id: event.id }))
+  );
 }
 
-export function deleteEvent(id: string) {
-  saveEvents(getEvents().filter((e) => e.id !== id));
+export async function deleteEvent(id: string): Promise<void> {
+  // CASCADE on FK will remove child rows automatically
+  const { error } = await supabase.from("events").delete().eq("id", id);
+  if (error) throw error;
 }
 
-export function setCurrentEvent(id: string) {
-  const events = getEvents().map((e) => ({ ...e, isCurrent: e.id === id }));
-  saveEvents(events);
+export async function setCurrentEvent(id: string): Promise<void> {
+  // Unset all events first
+  const { error: unsetError } = await supabase
+    .from("events")
+    .update({ is_current: false })
+    .neq("id", id);
+  if (unsetError) throw unsetError;
+
+  // Set the target event
+  const { error: setError } = await supabase
+    .from("events")
+    .update({ is_current: true })
+    .eq("id", id);
+  if (setError) throw setError;
 }
 
 export function createBlankEvent(): EventData {
@@ -130,68 +284,3 @@ export function createBlankEvent(): EventData {
     fundedBy: "Funded by the Department of Computing, University of Wolverhampton",
   };
 }
-
-function createSeedEvent(): EventData {
-  return {
-    id: "rec2026",
-    name: "REC 2026",
-    date: "2026-04-21",
-    duration: "3 hours",
-    venue: "City Campus, University of Wolverhampton",
-    postcode: "WV1 1LY",
-    phone: "+44 (0)7438 023912",
-    tagline: "Research-Driven. Industry-Ready. Career-Focused.",
-    audience: "UG, PG & Graduates",
-    isCurrent: true,
-    status: "upcoming",
-    speakers: [
-      { id: "s1", name: "Dr. Sarah Mitchell", role: "Keynote Speaker", affiliation: "University of Wolverhampton", topic: "AI and Machine Learning in Healthcare", bio: "Senior Lecturer in Computer Science with over 15 years of experience in artificial intelligence research." },
-      { id: "s2", name: "Prof. James Okonkwo", role: "Keynote Speaker", affiliation: "University of Birmingham", topic: "Cybersecurity in the Age of IoT", bio: "Professor of Cybersecurity and a leading researcher in Internet of Things security protocols." },
-      { id: "s3", name: "Dr. Priya Sharma", role: "Invited Speaker", affiliation: "Capgemini UK", topic: "Bridging Academia and Industry in Software Engineering", bio: "Industry researcher and alumna specialising in agile development methodologies." },
-      { id: "s4", name: "Mr. David Chen", role: "Panel Moderator", affiliation: "University of Wolverhampton", topic: "Student Research Journeys", bio: "Postgraduate researcher in data science and an advocate for student-led research initiatives." },
-    ],
-    schedule: [
-      { id: "t1", time: "14:00 – 14:10", title: "Welcome Address", description: "Overview of the session and introduction of speakers." },
-      { id: "t2", time: "14:10 – 14:30", title: "Keynote Talk", description: "Invited guest shares insights on a topical research area (15–20 mins)." },
-      { id: "t3", time: "14:30 – 15:30", title: "Student & Graduate Presentations", description: "2–3 presentations (20 mins each), each followed by a 5-minute Q&A." },
-      { id: "t4", time: "15:30 – 16:00", title: "Panel Discussion", description: "Open conversation on challenges and opportunities in student research." },
-      { id: "t5", time: "16:00 – 16:30", title: "Networking & Refreshments", description: "Informal discussion, idea exchange, and mentorship opportunities." },
-    ],
-    committee: [
-      { id: "c1", name: "Julius Odede", role: "Chair", affiliation: "Department of Computing & Mathematical Sciences" },
-      { id: "c2", name: "Consolée Mbarushimana", role: "Co-Chair", affiliation: "Department of Computing & Mathematical Sciences" },
-      { id: "c3", name: "Dr. Helen Price", role: "Programme Committee", affiliation: "Department of Computer Science" },
-      { id: "c4", name: "Dr. Rajesh Patel", role: "Programme Committee", affiliation: "Department of Mathematics" },
-      { id: "c5", name: "Ms. Laura Benson", role: "Organising Committee", affiliation: "Postgraduate Research Office" },
-      { id: "c6", name: "Mr. Kwame Asante", role: "Student Representative", affiliation: "PhD Candidate, Computer Science" },
-    ],
-    topics: [
-      "Artificial Intelligence & Machine Learning",
-      "Cybersecurity & Network Security",
-      "Software Engineering & DevOps",
-      "Data Science & Big Data Analytics",
-      "Internet of Things (IoT)",
-      "Human-Computer Interaction",
-      "Mathematical Modelling & Optimisation",
-      "Cloud Computing & Distributed Systems",
-    ],
-    submissionGuidelines: [
-      "Abstract Length: 250–500 words",
-      "Presentation Duration: 15 minutes + 5 minutes Q&A",
-      "Format: PDF or Word document",
-    ],
-    importantDates: [
-      { id: "d1", label: "Abstract Submission Deadline", date: "TBA", highlight: true },
-      { id: "d2", label: "Notification of Acceptance", date: "TBA" },
-      { id: "d3", label: "Presentation Date", date: "TBA" },
-    ],
-    flyerHighlights: [
-      { id: "f1", icon: "🔬", text: "Present Your Research" },
-      { id: "f2", icon: "🤝", text: "Network & Collaborate" },
-      { id: "f3", icon: "📈", text: "Connect With Industry" },
-    ],
-    fundedBy: "Funded by the Department of Computing, University of Wolverhampton",
-  };
-}
-
-export const ADMIN_PASSWORD = "rec2026admin";

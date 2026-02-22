@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { CalendarDays, MapPin, Users, ArrowRight, BookOpen, Briefcase, TrendingUp } from "lucide-react";
 import campusHero from "@/assets/campus-hero.jpg";
 import { useEffect, useState } from "react";
-import { getCurrentEvent } from "@/lib/eventStore";
+import { useCurrentEvent } from "@/hooks/useEvents";
 
 function useCountdown(target: Date) {
   const calc = () => {
@@ -35,7 +35,7 @@ const Pad = ({ value, label }: { value: number; label: string }) => (
 );
 
 const Home = () => {
-  const event = getCurrentEvent();
+  const { data: event, isLoading } = useCurrentEvent();
   const eventDate = event?.date ? new Date(event.date + "T00:00:00") : new Date("2026-04-21T00:00:00");
   const { days, hours, minutes, seconds } = useCountdown(eventDate);
 

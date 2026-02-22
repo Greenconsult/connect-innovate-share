@@ -1,6 +1,7 @@
 import { User, Mic, Users } from "lucide-react";
 import campusHero from "@/assets/campus-hero.jpg";
-import { getCurrentEvent } from "@/lib/eventStore";
+import { useCurrentEvent } from "@/hooks/useEvents";
+import { Loader2 } from "lucide-react";
 
 const roleColors: Record<string, string> = {
   "Keynote Speaker": "bg-yellow-400 text-black",
@@ -15,7 +16,7 @@ const roleIcons: Record<string, typeof Mic> = {
 };
 
 const Speakers = () => {
-  const event = getCurrentEvent();
+  const { data: event, isLoading } = useCurrentEvent();
   const speakers = event?.speakers ?? [];
 
   return (
@@ -62,7 +63,10 @@ const Speakers = () => {
               );
             })}
           </div>
-          {speakers.length === 0 && (
+          {isLoading && (
+            <div className="flex justify-center py-12"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
+          )}
+          {!isLoading && speakers.length === 0 && (
             <p className="text-center text-muted-foreground font-body">No speakers announced yet.</p>
           )}
           <div className="text-center mt-12 p-6 bg-slate-800 rounded-xl max-w-xl mx-auto">

@@ -1,73 +1,79 @@
-# Welcome to your Lovable project
+# Research & Employability Corner (REC)
 
-## Project info
+A conference management web application for the Research and Employability Corner initiative at the University of Wolverhampton. Built with React + TypeScript, backed by Supabase (PostgreSQL), and deployed to GitHub Pages.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Live Site
 
-## How can I edit this code?
+https://greenconsult.github.io/connect-innovate-share/
 
-There are several ways of editing your application.
+## Features
 
-**Use Lovable**
+- **Public pages** — Home, Speakers, Schedule, Proceedings, Committee, Venue, Contact, Flyer (downloadable as PNG)
+- **Admin dashboard** — Create, edit, and delete events; manage speakers, schedule, committee, topics, and more
+- **Supabase backend** — PostgreSQL database with Row Level Security (public read, authenticated write)
+- **Supabase Auth** — Email/password authentication for the admin panel
+- **GitHub Pages deployment** — Automated via GitHub Actions on push to `main`
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui, TanStack React Query, Framer Motion
+- **Backend**: Supabase (PostgreSQL + Auth + RLS)
+- **Deployment**: GitHub Pages via GitHub Actions
 
-**Use your preferred IDE**
+## Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Node.js 18+ and npm
+- A [Supabase](https://supabase.com) project
 
-Follow these steps:
+### Setup
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone the repository
+git clone https://github.com/Greenconsult/connect-innovate-share.git
+cd connect-innovate-share
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install dependencies
+npm install
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Copy the environment template and fill in your Supabase credentials
+cp .env.example .env
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Database Setup
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. Create a Supabase project at [supabase.com](https://supabase.com)
+2. Run the SQL in `supabase/migration.sql` via the Supabase SQL Editor — this creates all tables, RLS policies, and seeds the default REC 2026 event
+3. Create an admin user in Supabase Dashboard → Authentication → Users → Add User
+4. Copy your project URL and anon key into `.env`
 
-**Use GitHub Codespaces**
+### Deployment
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The app auto-deploys to GitHub Pages on every push to `main`. To set it up:
 
-## What technologies are used for this project?
+1. In your GitHub repo → Settings → Pages → Source: **GitHub Actions**
+2. Add repository secrets: `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`
+3. Push to `main` — the workflow in `.github/workflows/deploy.yml` handles the rest
 
-This project is built with:
+## Project Structure
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```
+src/
+  components/       # UI components (Navbar, Layout, admin forms, shadcn/ui)
+  contexts/         # AuthContext (Supabase Auth provider)
+  hooks/            # useEvents (React Query), useAuth, use-toast
+  lib/              # eventStore (Supabase CRUD), supabase client, utils
+  pages/            # Route pages (Home, Speakers, Admin*, etc.)
+supabase/
+  migration.sql     # Database schema, RLS policies, and seed data
+.github/workflows/
+  deploy.yml        # GitHub Actions CI/CD for GitHub Pages
+```
 
-## How can I deploy this project?
+## License
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+This project is proprietary to the University of Wolverhampton.

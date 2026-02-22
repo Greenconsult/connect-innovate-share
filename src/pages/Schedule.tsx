@@ -1,11 +1,12 @@
 import { Clock, CalendarDays } from "lucide-react";
 import campusHero from "@/assets/campus-hero.jpg";
-import { getCurrentEvent } from "@/lib/eventStore";
+import { useCurrentEvent } from "@/hooks/useEvents";
+import { Loader2 } from "lucide-react";
 
 const accentColors = ["bg-yellow-400", "bg-blue-500", "bg-emerald-500", "bg-violet-500", "bg-orange-400"];
 
 const Schedule = () => {
-  const event = getCurrentEvent();
+  const { data: event, isLoading } = useCurrentEvent();
   const schedule = event?.schedule ?? [];
 
   return (
@@ -53,7 +54,10 @@ const Schedule = () => {
               </div>
             ))}
           </div>
-          {schedule.length === 0 && <p className="text-center text-muted-foreground font-body">Schedule not yet available.</p>}
+          {isLoading && (
+            <div className="flex justify-center py-12"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
+          )}
+          {!isLoading && schedule.length === 0 && <p className="text-center text-muted-foreground font-body">Schedule not yet available.</p>}
         </div>
       </section>
     </>

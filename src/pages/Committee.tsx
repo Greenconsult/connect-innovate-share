@@ -1,6 +1,7 @@
 import { User } from "lucide-react";
 import campusHero from "@/assets/campus-hero.jpg";
-import { getCurrentEvent } from "@/lib/eventStore";
+import { useCurrentEvent } from "@/hooks/useEvents";
+import { Loader2 } from "lucide-react";
 
 const roleColors: Record<string, string> = {
   Chair: "from-yellow-400 to-yellow-500",
@@ -11,7 +12,7 @@ const roleColors: Record<string, string> = {
 };
 
 const Committee = () => {
-  const event = getCurrentEvent();
+  const { data: event, isLoading } = useCurrentEvent();
   const committee = event?.committee ?? [];
 
   return (
@@ -45,7 +46,10 @@ const Committee = () => {
               </div>
             ))}
           </div>
-          {committee.length === 0 && <p className="text-center text-muted-foreground font-body">Committee not yet announced.</p>}
+          {isLoading && (
+            <div className="flex justify-center py-12"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
+          )}
+          {!isLoading && committee.length === 0 && <p className="text-center text-muted-foreground font-body">Committee not yet announced.</p>}
         </div>
       </section>
     </>

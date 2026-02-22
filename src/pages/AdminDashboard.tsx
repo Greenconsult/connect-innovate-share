@@ -1,39 +1,48 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getEvents, setCurrentEvent, deleteEvent, createBlankEvent, saveEvent } from "@/lib/eventStore";
-import { Plus, Star, Trash2, LogOut, Edit, Calendar } from "lucide-react";
+import { createBlankEvent } from "@/lib/eventStore";
+import { useEvents, useSaveEvent, useDeleteEvent, useSetCurrentEvent } from "@/hooks/useEvents";
+import { useAuth } from "@/contexts/AuthContext";
+import { Plus, Star, Trash2, LogOut, Edit, Calendar, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const [events, setEventsState] = useState(getEvents());
+  const { user, signOut, loading: authLoading } = useAuth();
+  const { data: events = [], isLoading } = useEvents();
+  const saveEventMutation = useSaveEvent();
+  const deleteEventMutation = useDeleteEvent();
+  const setCurrentMutation = useSetCurrentEvent();
 
-  if (sessionStorage.getItem("rec_admin") !== "1") {
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-6 h-6 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (!user) {
     navigate("/admin", { replace: true });
     return null;
   }
 
-  const refresh = () => setEventsState(getEvents());
-
-  const handleCreate = () => {
+  const handleCreate = async () => {
     const ev = createBlankEvent();
-    saveEvent(ev);
+    await saveEventMutation.mutateAsync(ev);
     navigate(`/admin/events/${ev.id}`);
   };
 
   const handleSetCurrent = (id: string) => {
-    setCurrentEvent(id);
-    refresh();
+    setCurrentMutation.mutate(id);
   };
 
   const handleDelete = (id: string) => {
-    deleteEvent(id);
-    refresh();
+    deleteEventMutation.mutate(id);
   };
 
-  const handleLogout = () => {
-    sessionStorage.removeItem("rec_admin");
+  const handleLogout = async () => {
+    await signOut();
     navigate("/admin", { replace: true });
   };
 
@@ -54,7 +63,13 @@ const AdminDashboard = () => {
           </Button>
         </div>
 
-        {events.length === 0 && (
+        {isLoading && (
+          <div className="flex justify-center py-12">
+            <Loader2 className="w-6 h-6 animate-spin text-primary" />
+          </div>
+        )}
+
+        {!isLoading && events.length === 0 && (
           <p className="text-muted-foreground text-sm font-body">No events yet. Create one to get started.</p>
         )}
 
