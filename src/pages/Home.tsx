@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { CalendarDays, MapPin, Users, ArrowRight, BookOpen, Briefcase, TrendingUp } from "lucide-react";
+import { CalendarDays, MapPin, Users, ArrowRight, BookOpen, Briefcase, TrendingUp, Loader2 } from "lucide-react";
 import campusHero from "@/assets/campus-hero.jpg";
 import { useEffect, useState } from "react";
-import { useCurrentEvent } from "@/hooks/useEvents";
+import { useCurrentEvent, useEvents } from "@/hooks/useEvents";
 
 function useCountdown(target: Date) {
   const calc = () => {
@@ -129,6 +129,17 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Editions */}
+      <section className="bg-section-alt py-16 md:py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground text-center mb-4">Editions</h2>
+          <p className="text-muted-foreground font-body text-center mb-10 max-w-xl mx-auto">
+            Browse past and upcoming editions of the Research and Employability Corner.
+          </p>
+          <EditionsList />
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-6 text-center">
@@ -147,6 +158,76 @@ const Home = () => {
         </div>
       </section>
     </>
+  );
+};
+
+const EditionsList = () => {
+  const { data: events = [], isLoading } = useEvents();
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center py-8">
+        <Loader2 className="w-6 h-6 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (events.length === 0) {
+    return <p className="text-center text-muted-foreground font-body">No editions available yet.</p>;
+  }
+
+  return (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      {events.map((ev) => {
+        const displayDate = ev.date
+          ? new Date(ev.date + "T00:00:00").toLocaleDateString("en-GB", { month: "long", day: "numeric", year: "numeric" })
+          : "Date TBA";
+
+        return (
+          <Link
+            key={ev.id}
+            to={`/editions/${ev.id}`}
+            className="group bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all hover:border-primary/40"
+          >
+            <div className="relative h-32 overflow-hidden">
+              <img src={campusHero} alt={ev.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              <div className="absolute bottom-3 left-4 right-4">
+                <h3 className="font-display font-bold text-white text-lg drop-shadow">{ev.name || "Untitled Event"}</h3>
+              </div>
+              <div className="absolute top-3 right-3 flex gap-1.5">
+                {ev.isCurrent && (
+                  <span className="bg-yellow-400 text-black text-[10px] font-body font-bold px-2 py-0.5 rounded-full uppercase">
+                    Current
+                  </span>
+                )}
+                <span className={`text-[10px] font-body font-bold px-2 py-0.5 rounded-full uppercase ${ev.status === "upcoming" ? "bg-emerald-500 text-white" : "bg-white/80 text-slate-700"}`}>
+                  {ev.status}
+                </span>
+              </div>
+            </div>
+            <div className="p-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground font-body mb-2">
+                <CalendarDays className="w-3.5 h-3.5" />
+                <span>{displayDate}</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground font-body mb-3">
+                <MapPin className="w-3.5 h-3.5" />
+                <span className="truncate">{ev.venue || "Venue TBA"}</span>
+              </div>
+              {ev.tagline && (
+                <p className="text-xs text-muted-foreground font-body italic truncate">{ev.tagline}</p>
+              )}
+              <div className="flex items-center gap-3 text-[11px] text-muted-foreground font-body mt-3 pt-3 border-t border-border">
+                <span>{ev.speakers.length} speaker{ev.speakers.length !== 1 ? "s" : ""}</span>
+                <span>·</span>
+                <span>{ev.schedule.length} session{ev.schedule.length !== 1 ? "s" : ""}</span>
+              </div>
+            </div>
+          </Link>
+        );
+      })}
+    </div>
   );
 };
 

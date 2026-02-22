@@ -18,6 +18,7 @@ import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminEventEdit from "./pages/AdminEventEdit";
+import Edition from "./pages/Edition";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/venue" element={<Venue />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/flyer" element={<Flyer />} />
+            <Route path="/editions/:id" element={<Edition />} />
           </Route>
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
