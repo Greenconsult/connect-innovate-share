@@ -40,14 +40,29 @@ const Speakers = () => {
             {speakers.map((speaker) => {
               const Icon = roleIcons[speaker.role] ?? User;
               return (
-                <div key={speaker.id} className="bg-white border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow group">
+                <div
+                  key={speaker.id}
+                  className="bg-white border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow group"
+                >
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center flex-shrink-0 shadow">
-                      <Icon className="w-6 h-6 text-yellow-400" />
-                    </div>
+                    {speaker.imageUrl ? (
+                      <img
+                        src={speaker.imageUrl}
+                        alt={speaker.name}
+                        className="w-14 h-14 rounded-full object-cover flex-shrink-0 shadow border border-border"
+                      />
+                    ) : (
+                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center flex-shrink-0 shadow">
+                        <Icon className="w-6 h-6 text-yellow-400" />
+                      </div>
+                    )}
                     <div>
                       <h3 className="font-display font-bold text-foreground text-lg">{speaker.name}</h3>
-                      <span className={`inline-block text-xs font-body font-bold px-2.5 py-0.5 rounded-full mt-1 ${roleColors[speaker.role] ?? "bg-muted text-foreground"}`}>
+                      <span
+                        className={`inline-block text-xs font-body font-bold px-2.5 py-0.5 rounded-full mt-1 ${
+                          roleColors[speaker.role] ?? "bg-muted text-foreground"
+                        }`}
+                      >
                         {speaker.role}
                       </span>
                       <p className="text-muted-foreground font-body text-xs mt-1">{speaker.affiliation}</p>
@@ -64,7 +79,9 @@ const Speakers = () => {
             })}
           </div>
           {isLoading && (
-            <div className="flex justify-center py-12"><Loader2 className="w-6 h-6 animate-spin text-primary" /></div>
+            <div className="flex justify-center py-12">
+              <Loader2 className="w-6 h-6 animate-spin text-primary" />
+            </div>
           )}
           {!isLoading && speakers.length === 0 && (
             <p className="text-center text-muted-foreground font-body">No speakers announced yet.</p>
@@ -72,7 +89,9 @@ const Speakers = () => {
           <div className="text-center mt-12 p-6 bg-slate-800 rounded-xl max-w-xl mx-auto">
             <p className="text-white/80 font-body text-sm">
               Interested in speaking at Research and Employability Corner?{" "}
-              <a href="/contact" className="text-yellow-400 font-semibold hover:underline">Contact us</a>
+              <a href="/contact" className="text-yellow-400 font-semibold hover:underline">
+                Contact us
+              </a>
             </p>
           </div>
         </div>

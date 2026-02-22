@@ -29,6 +29,7 @@ export interface Database {
           affiliation: string;
           topic: string;
           bio: string;
+          image_url?: string | null;
         };
         Insert: Database["public"]["Tables"]["speakers"]["Row"];
         Update: Partial<Database["public"]["Tables"]["speakers"]["Insert"]>;

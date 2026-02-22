@@ -28,7 +28,8 @@ CREATE TABLE IF NOT EXISTS speakers (
   role TEXT NOT NULL DEFAULT '',
   affiliation TEXT NOT NULL DEFAULT '',
   topic TEXT NOT NULL DEFAULT '',
-  bio TEXT NOT NULL DEFAULT ''
+  bio TEXT NOT NULL DEFAULT '',
+  image_url TEXT
 );
 
 -- 3. Schedule items table
@@ -137,6 +138,26 @@ CREATE POLICY "Auth delete" ON topics FOR DELETE USING (auth.role() = 'authentic
 CREATE POLICY "Auth insert" ON submission_guidelines FOR INSERT WITH CHECK (auth.role() = 'authenticated');
 CREATE POLICY "Auth update" ON submission_guidelines FOR UPDATE USING (auth.role() = 'authenticated');
 CREATE POLICY "Auth delete" ON submission_guidelines FOR DELETE USING (auth.role() = 'authenticated');
+
+
+-- =============================================================
+-- Storage Bucket: Speaker Images
+-- =============================================================
+-- Note: Storage buckets must be created via the Supabase Dashboard or Storage API
+-- Create a bucket named "speaker-images" with the following RLS policies:
+--
+-- PUBLIC READ: Allow anyone to view speaker images
+--   SELECT: true
+--
+-- AUTHENTICATED UPLOAD/UPDATE: Allow logged-in admins to upload and manage images
+--   INSERT: auth.role() = 'authenticated'
+--   UPDATE: auth.role() = 'authenticated'
+--   DELETE: auth.role() = 'authenticated'
+--
+-- Recommended bucket settings:
+--   - Name: speaker-images
+--   - Public: No (will use RLS policies)
+--   - File size limit: 10 MB (or as desired)
 
 
 -- =============================================================

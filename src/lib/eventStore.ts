@@ -11,6 +11,7 @@ export interface Speaker {
   affiliation: string;
   topic: string;
   bio: string;
+  imageUrl?: string;
 }
 
 export interface ScheduleItem {
@@ -93,6 +94,7 @@ function toEventData(row: any): EventData {
       affiliation: s.affiliation,
       topic: s.topic,
       bio: s.bio,
+      imageUrl: s.image_url,
     })),
     schedule: (row.schedule_items ?? []).map((s: any) => ({
       id: s.id,

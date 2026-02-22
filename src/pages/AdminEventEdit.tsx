@@ -91,7 +91,7 @@ const AdminEventEdit = () => {
             <EventDetailsForm event={event} onChange={update} />
           </TabsContent>
           <TabsContent value="speakers">
-            <SpeakersForm speakers={event.speakers} onChange={(speakers) => update({ speakers })} />
+            <SpeakersForm speakers={event.speakers} onChange={(speakers) => update({ speakers })} eventId={event.id} />
           </TabsContent>
           <TabsContent value="schedule">
             <ScheduleForm schedule={event.schedule} onChange={(schedule) => update({ schedule })} />
