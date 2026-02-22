@@ -95,6 +95,15 @@ export interface Database {
         Insert: Database["public"]["Tables"]["submission_guidelines"]["Row"];
         Update: Partial<Database["public"]["Tables"]["submission_guidelines"]["Insert"]>;
       };
+      site_settings: {
+        Row: {
+          id: string;
+          settings: Record<string, unknown>;
+          updated_at: string;
+        };
+        Insert: Database["public"]["Tables"]["site_settings"]["Row"];
+        Update: Partial<Database["public"]["Tables"]["site_settings"]["Insert"]>;
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

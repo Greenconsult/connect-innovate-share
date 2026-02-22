@@ -1,20 +1,15 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-
-const navLinks = [
-  { label: "Home", to: "/" },
-  { label: "Speakers", to: "/speakers" },
-  { label: "Schedule", to: "/schedule" },
-  { label: "Proceedings", to: "/proceedings" },
-  { label: "Committee", to: "/committee" },
-  { label: "Venue", to: "/venue" },
-  { label: "Contact", to: "/contact" },
-];
+import { useSettings } from "@/hooks/useSettings";
+import { DEFAULT_SETTINGS } from "@/lib/settingsStore";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { data: settings } = useSettings();
+  const s = settings ?? DEFAULT_SETTINGS;
+  const visibleLinks = s.navLinks.filter((l) => l.visible);
 
   return (
     <>
@@ -23,12 +18,12 @@ const Navbar = () => {
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="font-display font-bold text-xl text-primary">
-              REC 2026
+              {s.brandName}
             </Link>
 
             {/* Desktop links */}
             <div className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => (
+              {visibleLinks.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
@@ -57,7 +52,7 @@ const Navbar = () => {
         {/* Mobile menu */}
         {mobileOpen && (
           <div className="md:hidden border-t border-border bg-background pb-4">
-            {navLinks.map((link) => (
+            {visibleLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}

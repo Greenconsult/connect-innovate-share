@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createBlankEvent } from "@/lib/eventStore";
 import { useEvents, useSaveEvent, useDeleteEvent, useSetCurrentEvent } from "@/hooks/useEvents";
 import { useAuth } from "@/contexts/AuthContext";
-import { Plus, Star, Trash2, LogOut, Edit, Calendar, Loader2 } from "lucide-react";
+import { Plus, Star, Trash2, LogOut, Edit, Calendar, Loader2, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
@@ -50,9 +50,16 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-muted/30">
       <header className="bg-card border-b border-border px-6 py-4 flex items-center justify-between">
         <h1 className="font-display font-bold text-lg text-foreground">REC Admin</h1>
-        <Button variant="ghost" size="sm" onClick={handleLogout}>
-          <LogOut className="w-4 h-4 mr-1" /> Logout
-        </Button>
+        <div className="flex items-center gap-2">
+          <Link to="/admin/settings">
+            <Button variant="ghost" size="sm">
+              <Settings className="w-4 h-4 mr-1" /> Site Settings
+            </Button>
+          </Link>
+          <Button variant="ghost" size="sm" onClick={handleLogout}>
+            <LogOut className="w-4 h-4 mr-1" /> Logout
+          </Button>
+        </div>
       </header>
 
       <div className="container mx-auto px-6 py-8 max-w-3xl">

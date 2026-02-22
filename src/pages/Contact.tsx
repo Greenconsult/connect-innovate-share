@@ -1,14 +1,19 @@
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import campusHero from "@/assets/campus-hero.jpg";
+import { useSettings } from "@/hooks/useSettings";
+import { DEFAULT_SETTINGS } from "@/lib/settingsStore";
 
 const Contact = () => {
+  const { data: settings } = useSettings();
+  const s = settings ?? DEFAULT_SETTINGS;
+
   return (
     <>
       {/* Vibrant hero */}
       <section className="relative py-20 flex items-center overflow-hidden">
         <img
           src={campusHero}
-          alt="University of Wolverhampton"
+          alt="Contact"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/75 via-black/60 to-black/70" />
@@ -35,7 +40,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-body font-bold text-foreground text-sm">Email</p>
-                    <a href="mailto:researchcorner@wlv.ac.uk" className="text-primary text-sm font-body hover:underline">researchcorner@wlv.ac.uk</a>
+                    <a href={`mailto:${s.contactEmail}`} className="text-primary text-sm font-body hover:underline">{s.contactEmail}</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 bg-white border border-border rounded-xl p-4 shadow-sm">
@@ -44,7 +49,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-body font-bold text-foreground text-sm">Phone</p>
-                    <p className="text-muted-foreground text-sm font-body">+44 (0)7438 023912</p>
+                    <p className="text-muted-foreground text-sm font-body">{s.contactPhone}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4 bg-white border border-border rounded-xl p-4 shadow-sm">
@@ -54,9 +59,10 @@ const Contact = () => {
                   <div>
                     <p className="font-body font-bold text-foreground text-sm">Address</p>
                     <p className="text-muted-foreground text-sm font-body leading-relaxed">
-                      Department of Computing & Mathematical Sciences<br />
-                      University of Wolverhampton<br />
-                      City Campus, Wolverhampton, WV1 1LY
+                      {s.contactDepartment}<br />
+                      {s.contactAddress.split("\n").map((line, i, arr) => (
+                        <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+                      ))}
                     </p>
                   </div>
                 </div>

@@ -1,9 +1,13 @@
 import { FileText, CheckCircle, Send } from "lucide-react";
 import campusHero from "@/assets/campus-hero.jpg";
 import { useCurrentEvent } from "@/hooks/useEvents";
+import { useSettings } from "@/hooks/useSettings";
+import { DEFAULT_SETTINGS } from "@/lib/settingsStore";
 
 const Proceedings = () => {
   const { data: event } = useCurrentEvent();
+  const { data: settings } = useSettings();
+  const st = settings ?? DEFAULT_SETTINGS;
   const topics = event?.topics ?? [];
   const guidelines = event?.submissionGuidelines ?? [];
   const importantDates = event?.importantDates ?? [];
@@ -66,8 +70,8 @@ const Proceedings = () => {
                 })}
                 <div className="flex items-center gap-3">
                   <span className="text-xs font-body font-bold uppercase tracking-wide text-muted-foreground w-44 shrink-0">Submission Email</span>
-                  <a href="mailto:researchcorner@wlv.ac.uk" className="text-sm font-body text-primary font-semibold hover:underline flex items-center gap-1">
-                    <Send className="w-3.5 h-3.5" /> researchcorner@wlv.ac.uk
+                  <a href={`mailto:${st.contactEmail}`} className="text-sm font-body text-primary font-semibold hover:underline flex items-center gap-1">
+                    <Send className="w-3.5 h-3.5" /> {st.contactEmail}
                   </a>
                 </div>
               </div>

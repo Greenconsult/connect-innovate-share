@@ -18,6 +18,7 @@ import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminEventEdit from "./pages/AdminEventEdit";
+import AdminSiteSettings from "./pages/AdminSiteSettings";
 import Edition from "./pages/Edition";
 
 const queryClient = new QueryClient();
@@ -45,6 +46,7 @@ const App = () => (
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/events/:id" element={<AdminEventEdit />} />
+          <Route path="/admin/settings" element={<AdminSiteSettings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </HashRouter>
