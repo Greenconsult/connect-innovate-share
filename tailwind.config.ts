@@ -15,12 +15,12 @@ export default {
   	extend: {
   		fontFamily: {
   			display: [
-  				'Merriweather"',
+  				'"Merriweather"',
   				'Georgia',
   				'serif'
   			],
   			body: [
-  				'Source Sans 3"',
+  				'"Source Sans 3"',
   				'system-ui',
   				'sans-serif'
   			],
