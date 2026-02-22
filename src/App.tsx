@@ -14,6 +14,9 @@ import Venue from "./pages/Venue";
 import Contact from "./pages/Contact";
 import Flyer from "./pages/Flyer";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminEventEdit from "./pages/AdminEventEdit";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +38,9 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/flyer" element={<Flyer />} />
           </Route>
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/events/:id" element={<AdminEventEdit />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
